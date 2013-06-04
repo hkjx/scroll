@@ -16,7 +16,7 @@ ActiveAdmin.register Specialist do
     f.inputs "Specialist" do
       f.input :name
       f.input :position
-      f.input :content
+      f.input :content, :input_html => { :class => "ckeditor", :rows => "40"}
       f.input :avatar, as: :file
     end
     f.buttons

@@ -10,7 +10,7 @@ ActiveAdmin.register StaticBlock do
   form do |f|
     f.inputs "Static block" do
       f.input :title
-      f.input :content
+      f.input :content, as: :ckeditor
     end
     f.buttons
   end

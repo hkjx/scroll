@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'thin'
 gem 'activeadmin'
 gem 'paperclip'
+gem "ckeditor"
 
 # Gems used only for assets and not required§
 # in production environments by default.
