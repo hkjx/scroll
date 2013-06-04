@@ -7,6 +7,8 @@ ActiveAdmin.register Specialist do
     column :avatar, sortable: :avatar_file_name  do |res|
       image_tag res.avatar.url(:thumb)
     end
+    column :created_at
+
     default_actions
   end
 
@@ -29,6 +31,7 @@ ActiveAdmin.register Specialist do
         row :avatar do
           image_tag(res.avatar.url(:thumb))
         end
+        row  :created_at
       end
     end
   end
