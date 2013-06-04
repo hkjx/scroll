@@ -29,20 +29,16 @@
 .top200
   margin-top: 200px
 body
-  font: 14px / 1.6 "PT Serif", serif
-  font-weight: 400
-  color: #222
   padding: 0
   margin: 0
   -webkit-font-smoothing: antialiased
 
 h1, h2, h3
-  font-family: 'PT Sans Narrow', sans-serif
+  font-family: 'DINProBold'
   font-weight: bold
-  text-transform: uppercase
 
 h4, h5, h6
-  font-family: 'PT Sans', sans-serif
+  font-family: 'DINProBold'
   font-weight: bold
 
 h4
@@ -157,25 +153,40 @@ article
   z-index: 20
   left: 20px
   top: 160px
+  text-indent: -9999px
 
+#footer
+  width: 160px
+  color: #fff
+  font-size: 12px
+  margin: 0 auto
+  position: absolute
+  bottom: 20px
+  left: 45%
+  z-index: 25
+  p
+    margin-top: 10px
+  a
+    color: #fff
 .section
   background-size: cover
   // background-color: #0e0b0b!important
 
 
 .container
-  height: 500px
-  left: 50%
-  margin: -250px 0 0 -512px
-  position: absolute
-  top: 50%
-  width: 1024px
+  // height: 500px
+  // left: 50%
+  // margin: -250px 0 0 -512px
+  // position: absolute
+  // top: 50%
+  // width: 1024px
 
 #section-1
   background: url(/assets/section-1.jpg) 50% 0 no-repeat
 #section-2
   background: url(/assets/section-2.jpg) 50% 0 no-repeat
   // background-attachment: fixed
+
 #section-3
   background: url(/assets/section-3.jpg) 50% 0 no-repeat
 #section-4
@@ -184,8 +195,9 @@ article
 
 #section-3
 
-
-.fixed
+.parallax
+  position: absolute
+.fixed-block
   background-color: #FFF
   padding: 14px
   width: 200px
@@ -193,8 +205,8 @@ article
   // top: 180px
   &.active
     position: fixed
-    top: 150px
-    right: 650px
+    top: 300px
+
 
 
 
@@ -202,36 +214,46 @@ article
 .block
   background-color: #262626
   background-color: rgba(38,38,38, 1)
-  padding: 16px
+  padding: 8px 16px 16px
   color: #ffffff
-  font-size: 16px
-  width: 40%
+  font-size: 14px
+  line-height: 1.15
+  position: relative
   &.w_auto
     width: auto
 
   h1
-    font-size: 24px
+    font-size: 26px
+    line-height: 1
+    margin: 0 0 16px 0
+  .h2
+    display: inline-block
+    font-size: 27px
 
-
-
-
+  .a-show
+    color: #fff
+    text-decoration: underline
+    margin: 10px 0
+    display: inline-block
 
 .images
   width: 450px
   margin: 100px 200px 0 0
+  padding-top: 16px
   ul
+    width: 500px
     li
       float: left
       width: 186px
       list-style-type: none
-      margin: 0 18px 30px
+      margin: 0 40px 30px 0
   img
     display: block
     margin: 0 0 14px 0
     width: 186px
     height: 80px
     background: #fff
-  strong
+  span
     font-size: 16px
     display: block
 
@@ -253,14 +275,16 @@ article
       //     text-decoration: underline
   img
     display: inline-block
-    margin: 0 0 14px 0
+    margin: 0 10px 0px 0
     width: 50px
     height: 50px
     background: #fff
-  strong
-    font-size: 16px
-    display: block
   span
+    font-size: 28px
+    line-height: 1
+    margin-bottom: 4px
+    display: block
+  em
     display: block
 
 .sliders

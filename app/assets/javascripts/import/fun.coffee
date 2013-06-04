@@ -1,6 +1,6 @@
 $ ->
   $fixed = $('.fixed-block')
-
+  $fixed.removeClass("active")
 
   $(".slide").click ->
     root = $(this).closest(".sliders")
@@ -35,8 +35,18 @@ $ ->
 
 
 
-#   $(window).scroll ->
-#     if $(window).scrollTop() >= $fixed.offset().top - 300
-#       $fixed.addClass("active")
-#     else
-#       $fixed.removeClass("active")
+  # $(window).scroll ->
+  #   if $(window).scrollTop() >= $(".scroll-block").offset().top - 300
+  #     $fixed.addClass("active")
+  #   else
+  #     $fixed.removeClass("active")
+
+
+
+  #   console.log "scrollTop " + $(window).scrollTop()
+
+  #   console.log "offsetTop " + $(".scroll-block").offset().top  + $(".scroll-block").height()
+
+  #   if $(window).scrollTop() - 420 > $(".scroll-block").offset().top
+  #     $fixed.removeClass("active")
+  #     $fixed.css("top":$(".scroll-block").height()-00)

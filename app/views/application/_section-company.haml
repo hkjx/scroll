@@ -1,0 +1,7 @@
+- company = StaticBlock.find_by_id 1
+- if company
+  .cf
+    .block.right{:style => "margin: 35% 40px 0 0; width: 515px"}
+      %p
+        %strong.h2=company.title
+        = company.content

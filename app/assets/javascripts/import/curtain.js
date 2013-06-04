@@ -5,9 +5,6 @@
 * Version: 2
 * Copyright 2011, Victor Coulon (http://victorcoulon.fr)
 * Released under the MIT Licence
-*
-* MODIFIED BY @jayf of JUXTAPROSE, May 2013
-*
 */
 
 (function ( $, window, document, undefined ) {
@@ -21,15 +18,9 @@
             scrollButtons: {},
             controls: null,
             curtainLinks: '.curtain-links',
-            loadClass: 'curtains-loaded',
-            mobileClass: 'curtains-mobile',
             enableKeys: true,
             easing: 'swing',
-            disabled: false,
-            sectionElement: 'section',
-            nextSlide: function() {},
-            prevSlide: function() {},
-            allLoaded: function() {}
+            disabled: false
         };
 
     // The actual plugin constructor
@@ -45,6 +36,62 @@
         this._ignoreHashChange = false;
 
         this.init();
+
+        // Public Functions
+        this.insert = function(content){
+            if(Object.prototype.toString.call(content) !== '[object Object]') {
+                throw new TypeError('Content must be an object');
+            }
+            content.goTo = (content.goTo === true) ? true : false;
+
+            // append the content to list
+            var newEl = $(document.createElement('li')).attr('id', (content.htmlId) ? content.htmlId : null)
+                                .attr('class', (content.htmlClass) ? content.htmlClass : null)
+                                .html( (content.html) ? content.html : null );
+            $(self.element).append(newEl);
+
+
+            // Append Content after an element OR at the end
+            if(content.insertAfter && $(content.insertAfter).length) {
+                $(self.element).find(content.insertAfter).after(newEl);
+            } else {
+                $(self.element).append(newEl);
+            }
+
+
+            // When the element is ready
+            self.readyElement($(newEl), function(){
+                // re(init) cache elements
+                self.$element = $(self.element);
+                self.$li = $(self.element).find('>li');
+
+                // Mobile Fix
+                if(self.options.mobile){
+                    self.$li.css({position:'relative'});
+                    self.$element.find('.fixed').css({position:'absolute'});
+                }
+
+                self.setLinks();
+
+                // Set dimensions after loading images (or not)
+                if($(newEl).find('img').length){
+                    $(newEl).find('img').load(function(){
+                        self.setDimensions();
+                    });
+                } else {
+                    self.setDimensions();
+                }
+
+                // Scroll to the new element
+                if(content.goTo === true){
+                    var position = $(newEl).attr('data-position') || null;
+                    self.scrollEl.animate({
+                        scrollTop:position
+                    }, self.options.scrollSpeed, self.options.easing);
+                }
+            });
+
+        };
     }
 
     Plugin.prototype = {
@@ -52,33 +99,31 @@
             var self = this;
 
             // Cache element
-            self.$element = $(this.element);
-            this.$section = $(this.element).find('>' + self.options.sectionElement);
-            this.$numberOfSections = this.$section.length;
+            this.$element = $(this.element);
+            this.$li = $(this.element).find('>li');
+            this.$liLength = this.$li.length;
             self.$windowHeight = $(window).height();
             self.$elDatas = {};
             self.$document = $(document);
             self.$window = $(window);
 
-            var ua = navigator.userAgent;
 
-            self.webkit = (ua.indexOf('Chrome') > -1 || ua.indexOf("Safari") > -1);
-
-            $.Android = (ua.match(/Android/i));
-            $.iPhone = ((ua.match(/iPhone/i)) || (ua.match(/iPod/i)));
+            //self.webkit = (navigator.userAgent.indexOf('Chrome') > -1 || navigator.userAgent.indexOf("Safari") > -1);
+            $.Android = (navigator.userAgent.match(/Android/i));
+            $.iPhone = ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)));
             $.iPad = ((navigator.userAgent.match(/iPad/i)));
-            $.iOs4 = (/OS [1-4]_[0-9_]+ like Mac OS X/i.test(ua));
+            $.iOs4 = (/OS [1-4]_[0-9_]+ like Mac OS X/i.test(navigator.userAgent));
 
             if($.iPhone || $.iPad || $.Android || self.options.disabled){
                 this.options.mobile = true;
-                this.$section.css({position:'relative'});
+                this.$li.css({position:'relative'});
                 this.$element.find('.fixed').css({position:'absolute'});
             }
 
-            if(self.webkit || this.options.mobile) {
+            if(this.options.mobile){
+               this.scrollEl =  this.$element;
+            } else{
                 this.scrollEl = $('body');
-            } else {
-                this.scrollEl = $('html');
             }
 
             if(self.options.controls){
@@ -102,24 +147,23 @@
             // When all image is loaded
             var callbackImageLoaded = function(){
                 self.setDimensions();
-                self.$section.eq(0).addClass('current');
-
-                self.options.allLoaded();
+                self.$li.eq(0).addClass('current');
 
                 self.setCache();
 
                 if(!self.options.mobile){
-                    if(self.$section.eq(1).length) {
-                        self.$section.eq(1).nextAll().addClass('hidden');
-                    }
-                    self.$element.addClass(self.options.loadClass);
-                } else {
-                    self.$element.addClass(self.options.loadClass).addClass(self.options.mobileClass);
+                    if(self.$li.eq(1).length)
+                        self.$li.eq(1).nextAll().addClass('hidden');
                 }
 
                 self.setEvents();
                 self.setLinks();
                 self.isHashIsOnList(location.hash.substring(1));
+
+                // Remove Loading Overlay
+                $('.load-overlay').fadeOut(function(){
+                    $('.load-overlay').css({marginLeft:'-6000px'});
+                });
             };
 
             if(self.$element.find('img').length)
@@ -173,7 +217,7 @@
                 }, self.options.scrollSpeed, self.options.easing);
             } else {
                 var index = $("#"+direction).index(),
-                    speed = Math.abs(self.currentIndex-index) * (this.options.scrollSpeed*4) / self.$numberOfSections;
+                    speed = Math.abs(self.currentIndex-index) * (this.options.scrollSpeed*4) / self.$liLength;
 
                 self.scrollEl.animate({
                     scrollTop:self.$elDatas[index]['data-position'] || null
@@ -189,9 +233,8 @@
                 // Scroll to top
                 self._ignoreHashChange = true;
 
-                var idx = self.$current.prev().attr('id')
-                if(idx)
-                    self.setHash(idx);
+                if(self.$current.prev().attr('id'))
+                    self.setHash(self.$current.prev().attr('id'));
 
                 self.$current
                     .removeClass('current')
@@ -200,21 +243,53 @@
                     .prev().addClass('current').removeClass('hidden');
 
                 self.setCache();
-                self.options.prevSlide(idx);
 
             } else if(docTop < (self.currentP + self.currentHeight)){
 
                 // Animate the current pannel during the scroll
-                if(self.webkit)
+                if(self.webkit) {
                     self.$current.css({'-webkit-transform': 'translateY('+(-(docTop-self.currentP))+'px) translateZ(0)' });
-                else
+                } else {
                     self.$current.css({marginTop: -(docTop-self.currentP) });
+
+                    // Look for Parallax elements and animate them
+                    if (self.hasParallax) {
+
+                        // Faster scrolling than text
+                        //self.$parallax.css({marginTop: -(((docTop - self.currentP) * 1) - (self.$parallax.position().top + self.$parallax.height())) });
+
+                        // slower scrolling than main text
+
+                        // default scrolling speed
+                        var parallaxSpeed = .2;
+                        //console.log(self.$parallax[0]);
+
+
+                        // Check to see if element has a speed attribute and set the speed to that
+                        for(var i=0, n= self.$parallax.length; i<n; i++) {
+
+                            if ($(self.$parallax.get(i)).attr("rel")) {
+                                parallaxSpeed = $(self.$parallax.get(i)).attr("rel");
+                                //console.log(self.$parallax.attr("rel"));
+                            }
+
+                           //console.log(docTop - self.currentP);
+
+                           $(self.$parallax.get(i)).css({paddingTop: -(((docTop - self.currentP) * -(parallaxSpeed))) });
+
+                        }
+
+                    }
+
+                }
+
 
                 // If there is a fixed element in the current panel
                 if(self.$fixedLength){
                     var dataTop = parseInt(self.$fixed.attr('data-top'), 10);
 
-                    if(docTop + self.$windowHeight >= self.currentP + self.currentHeight){
+                    // Added "-200" to avoid overlap of element into next panel"
+                    if(docTop + self.$windowHeight >= self.currentP + self.currentHeight - 200){
                         self.$fixed.css({
                             position: 'fixed'
                         });
@@ -239,38 +314,17 @@
                     });
                 }
 
-
-                if(self.parallaxBg){
-                    self.$current.css({
-                        'background-position-y': docTop * self.parallaxBg
-                    });
-                }
-
-                if(self.$fade.length){
-                    self.$fade.css({
-                        'opacity': 1-(docTop/ self.$fade.attr('data-fade'))
-                    });
-                }
-
-                if(self.$slowScroll.length){
-                    self.$slowScroll.css({
-                        'margin-top' : (docTop / self.$slowScroll.attr('data-slow-scroll'))
-                    });
-                }
-
             } else {
                 // Scroll bottom
                 self._ignoreHashChange = true;
-                var idx = self.$current.next().attr('id');
-                if(idx)
-                    self.setHash(idx);
+                if(self.$current.next().attr('id'))
+                    self.setHash(self.$current.next().attr('id'));
 
                 self.$current.removeClass('current')
                     .addClass('hidden')
-                    .next(self.sectionElement).addClass('current').next(self.sectionElement).removeClass('hidden');
+                    .next('li').addClass('current').next('li').removeClass('hidden');
 
                 self.setCache();
-                self.options.nextSlide(idx);
             }
 
         },
@@ -283,13 +337,11 @@
                 // Scroll to top
                 self._ignoreHashChange = true;
 
-                var idx = self.$current.prev().attr('id');
-                if(idx)
-                    self.setHash(idx);
+                if(self.$current.prev().attr('id'))
+                    self.setHash(self.$current.prev().attr('id'));
 
                 self.$current.removeClass('current').prev().addClass('current');
                 self.setCache();
-                self.options.prevSlide(idx);
             } else if(docTop+10 < (self.currentP + self.currentHeight)){
 
                 // If there is a step element in the current panel
@@ -308,13 +360,11 @@
 
                 // Scroll bottom
                 self._ignoreHashChange = true;
-                var idx = self.$current.next().attr('id')
-                if(idx)
-                    self.setHash(idx);
+                if(self.$current.next().attr('id'))
+                    self.setHash(self.$current.next().attr('id'));
 
                 self.$current.removeClass('current').next().addClass('current');
                 self.setCache();
-                self.options.nextSlide(idx);
             }
 
 
@@ -328,7 +378,7 @@
 
             self.$windowHeight = self.$window.height();
 
-            this.$section.each(function(index) {
+            this.$li.each(function(index) {
                 var $self = $(this);
                 cover = $self.hasClass('cover');
 
@@ -463,7 +513,7 @@
         },
         setLinks: function(){
             var self = this;
-            this.$section.each(function() {
+            this.$li.each(function() {
                 var id = $(this).attr('id') || 0;
                 self.options.linksArray.push(id);
             });
@@ -471,7 +521,7 @@
         setHash: function(hash){
             // "HARD FIX"
             el = $('[href=#'+hash+']');
-            el.parent().siblings(this.sectionElement).removeClass('active');
+            el.parent().siblings('li').removeClass('active');
             el.parent().addClass('active');
 
             if(history.pushState) {
@@ -488,14 +538,13 @@
             self.$fixedLength = self.$fixed.length;
             self.$step = self.$current.find('.step');
             self.$stepLength = self.$step.length;
+            self.$parallax = self.$current.find('.parallax');
+            self.hasParallax = self.$parallax.length > 0;
+            self.$BGparallax = self.$current.find('.bg-parallax');
+            self.hasBGparallax = self.$BGparallax.length > 0;
             self.currentIndex = self.$current.index();
             self.currentP = self.$elDatas[self.currentIndex]['data-position'];
             self.currentHeight = self.$elDatas[self.currentIndex]['data-height'];
-
-            self.parallaxBg = self.$current.attr('data-parallax-background');
-            self.$fade = self.$current.find('[data-fade]');
-            self.$slowScroll = self.$current.find('[data-slow-scroll]');
-
         },
         // Utils
         isHashIsOnList: function(hash){
