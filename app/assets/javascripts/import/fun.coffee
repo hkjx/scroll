@@ -8,7 +8,7 @@ $ ->
     $(this).addClass "active"
 
 
-  $(".slide .control").live "click", ->
+  $(".slide .control").on "click", ->
     current = $(".slide.active").index()
     $root = $(this).closest(".sliders")
     all_count = $root.find(".slide").size()

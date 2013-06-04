@@ -1,9 +1,13 @@
+
 /*
 * Curtain.js - Create an unique page transitioning system
 * ---
 * Version: 2
 * Copyright 2011, Victor Coulon (http://victorcoulon.fr)
 * Released under the MIT Licence
+*
+* MODIFIED BY @jayf of JUXTAPROSE, May 2013
+*
 */
 
 (function ( $, window, document, undefined ) {
@@ -17,11 +21,15 @@
             scrollButtons: {},
             controls: null,
             curtainLinks: '.curtain-links',
+            loadClass: 'curtains-loaded',
+            mobileClass: 'curtains-mobile',
             enableKeys: true,
             easing: 'swing',
             disabled: false,
+            sectionElement: 'section',
             nextSlide: function() {},
-            prevSlide: function() {}
+            prevSlide: function() {},
+            allLoaded: function() {}
         };
 
     // The actual plugin constructor
@@ -44,33 +52,33 @@
             var self = this;
 
             // Cache element
-            this.$element = $(this.element);
-            this.$li = $(this.element).find('>li');
-            this.$liLength = this.$li.length;
+            self.$element = $(this.element);
+            this.$section = $(this.element).find('>' + self.options.sectionElement);
+            this.$numberOfSections = this.$section.length;
             self.$windowHeight = $(window).height();
             self.$elDatas = {};
             self.$document = $(document);
             self.$window = $(window);
 
+            var ua = navigator.userAgent;
 
-            self.webkit = (navigator.userAgent.indexOf('Chrome') > -1 || navigator.userAgent.indexOf("Safari") > -1);
-            $.Android = (navigator.userAgent.match(/Android/i));
-            $.iPhone = ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)));
+            self.webkit = (ua.indexOf('Chrome') > -1 || ua.indexOf("Safari") > -1);
+
+            $.Android = (ua.match(/Android/i));
+            $.iPhone = ((ua.match(/iPhone/i)) || (ua.match(/iPod/i)));
             $.iPad = ((navigator.userAgent.match(/iPad/i)));
-            $.iOs4 = (/OS [1-4]_[0-9_]+ like Mac OS X/i.test(navigator.userAgent));
+            $.iOs4 = (/OS [1-4]_[0-9_]+ like Mac OS X/i.test(ua));
 
             if($.iPhone || $.iPad || $.Android || self.options.disabled){
                 this.options.mobile = true;
-                this.$li.css({position:'relative'});
+                this.$section.css({position:'relative'});
                 this.$element.find('.fixed').css({position:'absolute'});
             }
 
-            if(this.options.mobile){
-               this.scrollEl =  this.$element;
-            } else if($.browser.mozilla || $.browser.msie) {
-                this.scrollEl = $('html');
-            } else {
+            if(self.webkit || this.options.mobile) {
                 this.scrollEl = $('body');
+            } else {
+                this.scrollEl = $('html');
             }
 
             if(self.options.controls){
@@ -94,13 +102,19 @@
             // When all image is loaded
             var callbackImageLoaded = function(){
                 self.setDimensions();
-                self.$li.eq(0).addClass('current');
+                self.$section.eq(0).addClass('current');
+
+                self.options.allLoaded();
 
                 self.setCache();
 
                 if(!self.options.mobile){
-                    if(self.$li.eq(1).length)
-                        self.$li.eq(1).nextAll().addClass('hidden');
+                    if(self.$section.eq(1).length) {
+                        self.$section.eq(1).nextAll().addClass('hidden');
+                    }
+                    self.$element.addClass(self.options.loadClass);
+                } else {
+                    self.$element.addClass(self.options.loadClass).addClass(self.options.mobileClass);
                 }
 
                 self.setEvents();
@@ -159,7 +173,7 @@
                 }, self.options.scrollSpeed, self.options.easing);
             } else {
                 var index = $("#"+direction).index(),
-                    speed = Math.abs(self.currentIndex-index) * (this.options.scrollSpeed*4) / self.$liLength;
+                    speed = Math.abs(self.currentIndex-index) * (this.options.scrollSpeed*4) / self.$numberOfSections;
 
                 self.scrollEl.animate({
                     scrollTop:self.$elDatas[index]['data-position'] || null
@@ -175,8 +189,9 @@
                 // Scroll to top
                 self._ignoreHashChange = true;
 
-                if(self.$current.prev().attr('id'))
-                    self.setHash(self.$current.prev().attr('id'));
+                var idx = self.$current.prev().attr('id')
+                if(idx)
+                    self.setHash(idx);
 
                 self.$current
                     .removeClass('current')
@@ -185,7 +200,7 @@
                     .prev().addClass('current').removeClass('hidden');
 
                 self.setCache();
-                self.options.prevSlide();
+                self.options.prevSlide(idx);
 
             } else if(docTop < (self.currentP + self.currentHeight)){
 
@@ -246,15 +261,16 @@
             } else {
                 // Scroll bottom
                 self._ignoreHashChange = true;
-                if(self.$current.next().attr('id'))
-                    self.setHash(self.$current.next().attr('id'));
+                var idx = self.$current.next().attr('id');
+                if(idx)
+                    self.setHash(idx);
 
                 self.$current.removeClass('current')
                     .addClass('hidden')
-                    .next('li').addClass('current').next('li').removeClass('hidden');
+                    .next(self.sectionElement).addClass('current').next(self.sectionElement).removeClass('hidden');
 
                 self.setCache();
-                self.options.nextSlide();
+                self.options.nextSlide(idx);
             }
 
         },
@@ -267,12 +283,13 @@
                 // Scroll to top
                 self._ignoreHashChange = true;
 
-                if(self.$current.prev().attr('id'))
-                    self.setHash(self.$current.prev().attr('id'));
+                var idx = self.$current.prev().attr('id');
+                if(idx)
+                    self.setHash(idx);
 
                 self.$current.removeClass('current').prev().addClass('current');
                 self.setCache();
-                self.options.prevSlide();
+                self.options.prevSlide(idx);
             } else if(docTop+10 < (self.currentP + self.currentHeight)){
 
                 // If there is a step element in the current panel
@@ -291,12 +308,13 @@
 
                 // Scroll bottom
                 self._ignoreHashChange = true;
-                if(self.$current.next().attr('id'))
-                    self.setHash(self.$current.next().attr('id'));
+                var idx = self.$current.next().attr('id')
+                if(idx)
+                    self.setHash(idx);
 
                 self.$current.removeClass('current').next().addClass('current');
                 self.setCache();
-                self.options.nextSlide();
+                self.options.nextSlide(idx);
             }
 
 
@@ -310,7 +328,7 @@
 
             self.$windowHeight = self.$window.height();
 
-            this.$li.each(function(index) {
+            this.$section.each(function(index) {
                 var $self = $(this);
                 cover = $self.hasClass('cover');
 
@@ -445,7 +463,7 @@
         },
         setLinks: function(){
             var self = this;
-            this.$li.each(function() {
+            this.$section.each(function() {
                 var id = $(this).attr('id') || 0;
                 self.options.linksArray.push(id);
             });
@@ -453,7 +471,7 @@
         setHash: function(hash){
             // "HARD FIX"
             el = $('[href=#'+hash+']');
-            el.parent().siblings('li').removeClass('active');
+            el.parent().siblings(this.sectionElement).removeClass('active');
             el.parent().addClass('active');
 
             if(history.pushState) {
@@ -504,7 +522,7 @@
                 blank = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
             elems.bind('load.imgloaded',function(){
-                if (--len <= 0 && this.src !== blank || $(this).not(':visible')){
+                if (--len <= 0 && this.src !== blank){
                     elems.unbind('load.imgloaded');
                     callback.call(elems,this);
                 }
