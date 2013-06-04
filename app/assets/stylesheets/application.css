@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ *= require import
  */
 
 
@@ -40,7 +40,7 @@ html{
     left: 0;
     width: 100%;
     min-height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
     z-index:1;
 }
 .curtains>li.hidden{display:none;}

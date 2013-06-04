@@ -9,56 +9,63 @@
     %p
       Наша работа также позволяет нам оставаться смелыми в поиске решений и сохранять чувство юмора и здравый смысл. Что для нас – немаловажно!
 
-.cf
-  .block{:style => "margin: 200px auto; width: 685px; "}
-    %h1 История компании
-    %p Это самая лучшая возможность знакомиться с выдающимися людьми, реализовывать проекты, которые развивают наших клиентов и нас самих. Видеть, как наша работа влияет на реальные результаты. У нас нет высокой цели, но каждый день перед нами стоит новая задача в области обучения и развития конкретной компании.
-    %p Наша работа также позволяет нам оставаться смелыми в поиске решений и сохранять чувство юмора и здравый смысл. Что для нас – немаловажно!
-    %p Это самая лучшая возможность знакомиться с выдающимися людьми, реализовывать проекты, которые развивают наших клиентов и нас самих. Видеть, как наша работа влияет на реальные результаты. У нас нет высокой цели, но каждый день перед нами стоит новая задача в области обучения и развития конкретной компании.
-    %p Наша работа также позволяет нам оставаться смелыми в поиске решений и сохранять чувство юмора и здравый смысл. Что для нас – немаловажно!
+- history = StaticBlock.find_by_id 5
+- if history
+  .cf
+    .block{:style => "margin: 200px auto; width: 685px; "}
+      %h1= history.title
+      = raw history.content
 
-.cf
 
-  .block.inline{:style => "margin: 0 0 0 25%; width: 220px"}
-    %h1 Клиенты
-    %p Наша работа также позволяет нам оставаться смелыми в поиске решений и сохранять чувство юмора и здравый смысл. Что для нас – немаловажно
 
-  .block.images.scroll-block.right{:style => "margin: 0 auto; right: 25%"}
-    %ul.cf
-      - 4.times do
-        %li
-          %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
-          %span Title client
+
+
 
 .cf
-  .block.inline{:style => "margin: 140px 0 0 20%; width: 350px"}
-    %h1 Специалисты
-    %p Dat Langefääl es us denne Kirchspeele Richroth un Rösroth jemaaht woode. Richroth is ävver äälder wie Rösroth.
+  - client = StaticBlock.find_by_id 6
+  - if client
+    .block.inline{:style => "margin: 140px 0 0 25%; width: 220px"}
+      %h1=client.title
+      = raw client.content
+
+  - clients = Client.all
+  - if clients.present?
+    .block.images.scroll-block.right{:style => "margin: 140px auto; right: 25%"}
+      %ul.cf
+        - clients.each do |cl|
+          %li
+            = image_tag cl.image(:medium)
+            %span=cl.title
+
+.cf
+  - expert = StaticBlock.find_by_id 7
+  - if expert
+    .block.inline{:style => "margin: 140px 0 0 20%; width: 350px"}
+      %h1=expert.title
+      = raw expert.content
 
 
-
-
-  .block.inline.experts.sliders{:style => "margin: 140px 0 0 40px;"}
-    %ul
-      - 1.times do
-        %li.slide
-          %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
-          .inline
-            %span Title client
-            %em Title client Title client
-
-          .more.cf
-            %a.item-close{:href => "#"} ×
-            .controls
-              .control.prev  prev
-              .control.next next
-            .item-img
-              %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
-            .item-info
-              %h3 Oleg Pridiuk, Denmark585
-              %span Technical Evangelist, Unity Technologies
-              %p
-                Oleg has been breaking mobiles in Unity since Unity iPhone 1.0.1 and grew up to a default goto person for everything mobile. He is using his technical skills along with an irresistible charm and charisma to advocate Eastern Europe of Unity and vice versa.
+  - experts = Specialist.all
+  - if experts.present?
+    .block.inline.experts.sliders{:style => "margin: 140px 0 0 40px;"}
+      %ul
+        - experts.each do |ex|
+          %li.slide
+            = image_tag ex.avatar(:medium)
+            .inline
+              %span= ex.name
+              %em= ex.position
+            .more.cf
+              %a.item-close{:href => "#"} ×
+              .controls
+                .control.prev  <
+                .control.next >
+              .item-img
+                = image_tag ex.avatar(:medium)
+              .item-info
+                %h3= ex.name
+                %span.position= ex.position
+                = raw ex.content
 
 
 

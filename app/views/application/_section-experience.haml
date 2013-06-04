@@ -1,26 +1,50 @@
+/ - experience = StaticBlock.find_by_id 8
+/ - if experience
+
+= directions = []
+- directions.each do |direction|
+  .cf
+    .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
+      %h1 Направления работы
+      = raw direction.content
+      = link_to "Подробнее", "#", :class => "a-show"
+      .more
+
+/ .cf
+/   .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
+/     %h1 Развитие команд
+/     %p
+/       En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
+/     = link_to "Подробнее", "#", :class => "a-show"
+
+/ .cf
+/   .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
+/     %h1 LD-Консалтинг
+/     %p
+/       En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
+/     = link_to "Подробнее", "#", :class => "a-show"
+
+/ .cf
+/   .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
+/     %h1 Личный рост
+/     %p
+/       En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
+/     = link_to "Подробнее", "#", :class => "a-show"
+
+
+
 .cf
-  .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
-    %h1 Направления работы
-    %p
-      En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
+  - experience = StaticBlock.find_by_id 8
+  - if experience
+    .block.inline{:style => "margin: 50px 0 0 25%; width: 220px"}
+      %h1=experience.title
+      = raw experience.content
 
-  .cf
-  .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
-    %h1 Развитие команд
-    %p
-      En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
-    = link_to "Подробнее", "#", :class => "a-show"
-
-  .cf
-  .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
-    %h1 LD-Консалтинг
-    %p
-      En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
-    = link_to "Подробнее", "#", :class => "a-show"
-
-  .cf
-  .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
-    %h1 Личный рост
-    %p
-      En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
-    = link_to "Подробнее", "#", :class => "a-show"
+  / - experiences = Experience.all
+  / - if experiences.present?
+  /   .block.images.scroll-block.right{:style => "margin: 0 auto; right: 25%"}
+  /     %ul.cf
+  /       - experiences.each do |experience|
+  /         / %li
+  /         /   = image_tag cl.image(:medium)
+  /         /   %span=cl.title

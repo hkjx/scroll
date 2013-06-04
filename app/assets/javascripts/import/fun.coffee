@@ -29,8 +29,8 @@ $ ->
 
   $(".item-close").click ->
     $root = $(this).closest(".sliders")
-    $root.find(".slide").removeClass(".active")
-
+    $root.find(".slide").removeClass("active")
+    false
 
 
 
