@@ -27,7 +27,8 @@ gem 'haml'
 
 gem "jquery-ui-rails"
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
+gem "jquery-rails", "2.3.0"
 
 
 
