@@ -14,14 +14,14 @@
 //= require jquery_ujs
 // = require_tree ./import
 
-
-$(function(){
- $('.curtains').curtain({
-     scrollSpeed: 300,
-     controls: '.menu',
-     curtainLinks: '.curtain-links',
-     nextSlide: function(){
-      console.log("ok");
-     }
- });
-});
+  $(function(){
+       $('.curtains').curtain({
+           scrollSpeed: 300,
+           controls: '.menu',
+           curtainLinks: '.curtain-links',
+           sectionElement: 'li',
+           nextSlide: function(){
+            console.log("ok");
+           }
+       });
+    });
