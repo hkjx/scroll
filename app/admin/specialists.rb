@@ -7,6 +7,8 @@ ActiveAdmin.register Specialist do
     column :avatar, sortable: :avatar_file_name  do |res|
       image_tag res.avatar.url(:thumb)
     end
+    column :created_at
+
     default_actions
   end
 
@@ -14,7 +16,7 @@ ActiveAdmin.register Specialist do
     f.inputs "Specialist" do
       f.input :name
       f.input :position
-      f.input :content
+      f.input :content, :input_html => { :class => "ckeditor", :rows => "40"}
       f.input :avatar, as: :file
     end
     f.buttons
@@ -29,6 +31,7 @@ ActiveAdmin.register Specialist do
         row :avatar do
           image_tag(res.avatar.url(:thumb))
         end
+        row  :created_at
       end
     end
   end
