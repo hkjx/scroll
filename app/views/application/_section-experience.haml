@@ -1,14 +1,22 @@
-/ - experience = StaticBlock.find_by_id 8
-/ - if experience
+- line_of_work = LineOfWork.all
+- if line_of_work
+  .sliders
+    - line_of_work.each do |line|
+      .cf
+        .block.right.slide{:style => "width: 640px; margin: 100px 20% 0 0"}
+          %h1= line.title
+          = raw line.content
+          - if line.popup_content.present?
+            = link_to "Подробнее", "#", :class => "a-show"
+            .more.cf
+              %a.item-close{:href => "#"} ×
+              .controls
+                .control.prev  <
+                .control.next >
+              .item-info
+                %h3= line.title
+                = raw line.popup_content
 
-= directions = []
-- directions.each do |direction|
-  .cf
-    .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}
-      %h1 Направления работы
-      = raw direction.content
-      = link_to "Подробнее", "#", :class => "a-show"
-      .more
 
 / .cf
 /   .block.right{:style => "width: 640px; margin: 100px 20% 0 0"}

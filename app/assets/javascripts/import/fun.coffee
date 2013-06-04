@@ -8,6 +8,7 @@ $ ->
     $(this).addClass "active"
 
 
+
   $(".slide .control").on "click", ->
     current = $(".slide.active").index()
     $root = $(this).closest(".sliders")
