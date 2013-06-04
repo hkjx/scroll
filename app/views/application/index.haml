@@ -1,70 +1,139 @@
-.main
-  #menu
-    %li
-      %a.curtain-links{:href => "#section-1"} Компания
-    %li
-      %a.curtain-links{:href => "#section-2"} Направления работы
-    %li
-      %a.curtain-links{:href => "#section-3"} Опыт
-    %li
-      %a.curtain-links{:href => "#section-4"} Контакты
+#menu.cf
+  %li
+    %a.curtain-links{:href => "#section-1"} Компания
+  %li
+    %a.curtain-links{:href => "#section-2"} Направления работы
+  %li
+    %a.curtain-links{:href => "#section-3"} Опыт
+  %li
+    %a.curtain-links{:href => "#section-4"} Контакты
 
-  = link_to "/", "#", :id => "logo"
-  %ol.curtains
-    %li#section-1.section.cf
-      - 2.times do
-        .cf
-          .block.right.top100
-            %h1 Uran(VI)-fluorid (UF6)
-            %p eistens Uranhexafluorid genannt, ist eine Verbindung aus den Elementen Uran und Fluor. Es ist ein farbloser, kristalliner Feststoff, welcher leicht flüchtig, äußerst giftig und radioaktiv ist. Es ist eine sehr aggressive Substanz, die nahezu jeden Stoff und auch jedes biologische Gewebe angreift und sehr heftig mit Wasser reagiert. Bei Normaldruck und einer Temperatur von 56,5
-    %li#section-2.section
-      .cf
-        .block.center.top200
-          %h1 История компании
-          %p Dat Langefääl es us denne Kirchspeele Richroth un Rösroth jemaaht woode. Richroth is ävver äälder wie Rösroth.
-          %p Zwesche 1090 un 1120 es et eezte Mol dä Name Richroth en en Oorkund jeschrivve woode. För Rösroth han se de eetzte Oorkund eesch 1281 jeschrivve. Dat Ding han se em Kluuster en Aaldeberch jefunge. Övver de Kölle-Aanheijmer-Schossee (hück B8) un dä Verbindung Hitdöper Rhinghaafe (Levverkussen) un däm Berjische Land sinn fröher Possreijter jeridde un Posskotsche jefahre. De eetzte Poss en dä Jeschich vun dä Stadt wood 1774 als "Kayserliche Reichs-Posthalterey" vun dä Häärre von Thurn und Taxis opjemaaht. En dä Blööt öm de Midde vum 19. Johrhondert wore en dä Poss övver 90 Pääds. Sick 1845 wor de Köln-Mindener-Eisenbahn dä stärker Konkerrent.
-          %p En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind "Richroth-Rösroth" zesammehjelääch. Sick demm Johr 1936 heeß dat janze amptlich "Langefääl Rhld.". Em Johr 1939 wood dat Wappe verlinnt un em Johr 1948 dä Tittel "Stadt". De Shtadt Langefääl hät 2008 ehr 60-jöhrisch Stadterhebungs-Jubiläum
+%ul#social
+  %li.fb
+    = link_to "Facebook", "#"
+  %li.in
+    = link_to "In", "#"
 
-      %section.photos
-        .fixed
-          %h4 Here's a fixed title
-          %p With a small fixed text.
-          %p Oh, and you can see my last selected Instagram pictures on the left.
-        .cf
-          .photos-inner.right
-            %ul.step-list
-              - 6.times do
-                %li.step
-                  %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
+= link_to "/", "#", :id => "logo"
 
 
+%ol.curtains
+  %li#section-1.section
+    / .cf
+    /   .block.right{:style => "margin: 10% 40px 0 0"}
+    /     %p
+    /       %strong TEMA
+    /       eistens Uranhexafluorid genannt, ist eine Verbindung aus den Elementen Uran und Fluor. Es ist ein farbloser, kristalliner Feststoff, welcher leicht flüchtig, äußerst giftig und radioaktiv ist. Es ist eine sehr aggressive Substanz, die nahezu jeden Stoff und auch jedes biologische Gewebe angreift und sehr heftig mit Wasser reagiert. Bei Normaldruck und einer Temperatur von 56,5
 
-    %li#section-3.section
-      - 2.times do
-        .cf
-          .block.right.top100
-            %h1 Uran(VI)-fluorid (UF6)
-            %p eistens Uranhexafluorid genannt, ist eine Verbindung aus den Elementen Uran und Fluor. Es ist ein farbloser, kristalliner Feststoff, welcher leicht flüchtig, äußerst giftig und radioaktiv ist. Es ist eine sehr aggressive Substanz, die nahezu jeden Stoff und auch jedes biologische Gewebe angreift und sehr heftig mit Wasser reagiert. Bei Normaldruck und einer Temperatur von 56,5
+    / .cf
+    /   .block.inline.w_auto{:style => "margin: 140px 0 0 25%"}
+    /     = image_tag "/assets/del/i1.jpg"
+    /   .block.inline{:style => "margin: 180px 0 0 30px"}
+    /     %h1 Заголовок
+    /     %p
+    /       En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
+    /     %p
+    /       "Richroth-Rösroth" zesammehjelääch. Sick demm Johr 1936 heeß dat janze amptlich "Langefääl Rhld.". Em Johr 1939 wood dat Wappe verlinnt un em Johr 1948 dä Tittel "Stadt". De Shtadt Langefääl hät 2008 ehr 60-jöhrisch Stadterhebungs-Jubiläum
 
-        .cf
-          .photos-inner.right
-            %ul.step-list
-              - 2.times do
-                %li.step
-                  %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
-    %li#section-4.section
+    / .cf
+    /   .block{:style => "margin: 140px auto"}
+    /     %h1 История компании
+    /     %p Dat Langefääl es us denne Kirchspeele Richroth un Rösroth jemaaht woode. Richroth is ävver äälder wie Rösroth.
+    /     %p Zwesche 1090 un 1120 es et eezte Mol dä Name Richroth en en Oorkund jeschrivve woode. För Rösroth han se de eetzte Oorkund eesch 1281 jeschrivve. Dat Ding han se em Kluuster en Aaldeberch jefunge. Övver de Kölle-Aanheijmer-Schossee (hück B8) un dä Verbindung Hitdöper Rhinghaafe (Levverkussen) un däm Berjische Land sinn fröher Possreijter jeridde un Posskotsche jefahre. De eetzte Poss en dä Jeschich vun dä Stadt wood 1774 als "Kayserliche Reichs-Posthalterey" vun dä Häärre von Thurn und Taxis opjemaaht. En dä Blööt öm de Midde vum 19. Johrhondert wore en dä Poss övver 90 Pääds. Sick 1845 wor de Köln-Mindener-Eisenbahn dä stärker Konkerrent.
 
-      .block.center.top200
-        %h1 Контакты
+
+    / .cf
+    /   .block.inline{:style => "margin: 140px 0 0 20%; width: 220px"}
+    /     %h1 Клиенты
+    /     %p Dat Langefääl es us denne Kirchspeele Richroth un Rösroth jemaaht woode. Richroth is ävver äälder wie Rösroth.
+
+
+    /   .block.inline.images{:style => "margin: 140px 0 0 40px;"}
+    /     %ul
+    /       - 8.times do
+    /         %li
+    /           %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
+    /           %strong Title client
+
+    .cf
+      .block.inline{:style => "margin: 140px 0 0 20%; width: 220px"}
+        %h1 Специалисты
         %p Dat Langefääl es us denne Kirchspeele Richroth un Rösroth jemaaht woode. Richroth is ävver äälder wie Rösroth.
-        %p Zwesche 1090 un 1120 es et eezte Mol dä Name Richroth en en Oorkund jeschrivve woode. För Rösroth han se de eetzte Oorkund eesch 1281 jeschrivve.
-        %p En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth.
+
+
+      .block.inline.experts.sliders{:style => "margin: 140px 0 0 40px;"}
+        %ul
+          - 8.times do
+            %li.slide
+              %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
+              .inline
+                %strong Title client
+                %span Title client Title client
+
+              .more.cf
+                %a.item-close{:href => "#"} ×
+                .controls
+                  .control.prev  prev
+                  .control.next next
+                .item-img
+                  %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
+                .item-info
+                  %h3 Oleg Pridiuk, Denmark585
+                  %span Technical Evangelist, Unity Technologies
+                  %p
+                    Oleg has been breaking mobiles in Unity since Unity iPhone 1.0.1 and grew up to a default goto person for everything mobile. He is using his technical skills along with an irresistible charm and charisma to advocate Eastern Europe of Unity and vice versa.
 
 
 
 
 
+    / .cf
+    /   .block{:style => "margin: 40px 0 0 30px"}
+    /     %h1 Направления работы
+    /     %p
+    /       En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
 
+    / .cf
+    /   .block{:style => "margin: 20px auto"}
+    /     %h1 Развитие команд
+    /     %p
+    /       En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
+    /     = link_to "Подробнее", "#"
+
+    / .cf
+    /   .block.left{:style => "margin: 40px 0 0 30px"}
+    /     %h1 LD-Консалтинг
+    /     %p
+    /       En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
+    /     = link_to "Подробнее", "#"
+
+    / .cf
+    /   .block.right{:style => "margin: 40px 0 0 30px"}
+    /     %h1 Личный рост
+    /     %p
+    /       En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth. Em Johr 1910 woode die zweij Spezialgemeinden zo en Jemeind
+    /     = link_to "Подробнее", "#"
+
+  %li#section-3.section
+    / - 2.times do
+    /   .cf
+    /     .block.right.top100
+    /       %h1 Uran(VI)-fluorid (UF6)
+    /       %p eistens Uranhexafluorid genannt, ist eine Verbindung aus den Elementen Uran und Fluor. Es ist ein farbloser, kristalliner Feststoff, welcher leicht flüchtig, äußerst giftig und radioaktiv ist. Es ist eine sehr aggressive Substanz, die nahezu jeden Stoff und auch jedes biologische Gewebe angreift und sehr heftig mit Wasser reagiert. Bei Normaldruck und einer Temperatur von 56,5
+
+    /   .cf
+    /     / .photos-inner.right
+    /     /   %ul.step-list
+    /     /     - 2.times do
+    /     /       %li.step
+    /     /         %img{:alt => "", :src => "/assets/stepbystep/1.jpg"}/
+  %li#section-4.section
+
+    .block.center
+      %h1 Контакты
+      %p Dat Langefääl es us denne Kirchspeele Richroth un Rösroth jemaaht woode. Richroth is ävver äälder wie Rösroth.
+      %p Zwesche 1090 un 1120 es et eezte Mol dä Name Richroth en en Oorkund jeschrivve woode. För Rösroth han se de eetzte Oorkund eesch 1281 jeschrivve.
+      %p En dä "Franzuuse-Zick" af 1808 jof et de "Mairie" (Bürjermeestereij) Richroth. Se beshtunnt un denne Spezialgemeinden Richroth un Rösroth.
 
 
 

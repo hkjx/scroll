@@ -1,3 +1,8 @@
+*
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+
 .cf
   &:before
     content: ""
@@ -16,6 +21,9 @@
   margin-left: auto
   margin-right: auto
 
+.inline
+  display: inline-block
+  vertical-align: top
 .top100
   margin-top: 100px
 .top200
@@ -71,34 +79,73 @@ article
     text-align: justify
 
 
-.curtains > li
-  background: white url(/assets/blizzard.png)
-  box-shadow: 0 0 12px #666
-  &:last-child
-    box-shadow: none
 
 
 
 #menu
-  overflow: hidden
   position: fixed
   top: 20px
   z-index: 20
-  padding: 10px
   border-top: 6px solid #fff
-  width: 100%
+  width: 98%
+  left: 1%
+  &:before, &:after
+    content: ""
+    display: block
+    position: absolute
+    width: 17px
+    height: 17px
+    -webkit-border-radius: 50%
+    border-radius: 50%
+    background-color: #fff
+    top: -12px
+  &:before
+    left: 0
+  &:after
+    right: 0
   li
     margin: 0
     width: 25%
     float: left
     text-align: center
+    position: relative
     list-style: none
+    &.active
+      &:before
+        content: ""
+        position: absolute
+        height: 14px
+        width: 5px
+        background-color: #fff
+        top: -10px
+        left: 49%
+      a
+        text-decoration: underline
+
   a
     color: #FFF
     font-weight: bold
     font-size: 20px
 
 
+#social
+  position: fixed
+  right: 1%
+  top: 44px
+  z-index: 23
+  li
+    margin: 0 0 20px 0
+    &:hover
+      opacity: 0.8
+    &.fb
+      background: url(/assets/fb.png)
+    &.in
+      background: url(/assets/in.png)
+    a
+      text-indent: -9999px
+      display: block
+      width: 25px
+      height: 25px
 
 #logo
   background: url(/assets/logo.png)
@@ -113,56 +160,156 @@ article
 
 .section
   background-size: cover
+  min-height: 1000px
+  background-color: #0e0b0b!important
 
 #section-1
-  background: url(/assets/section-1.jpg) 50% 0 no-repeat
+  // background: url(/assets/section-1.jpg) 50% 0 no-repeat
 #section-2
-  background: url(/assets/section-2.jpg) 50% 0 no-repeat
-  background-attachment: fixed
+  // background: url(/assets/section-2.jpg) 50% 0 no-repeat
+  // background-attachment: fixed
 #section-3
-  background: url(/assets/section-3.jpg) 50% 0 no-repeat
+  // background: url(/assets/section-3.jpg) 50% 0 no-repeat
 #section-4
-  background: url(/assets/section-4.jpg) 50% 0 no-repeat
-
+  // background: url(/assets/section-4.jpg) 50% 0 no-repeat
+  // background-attachment: fixed
 
 #section-3
-  // .photos
-  //   padding: 150px 0
-  //   width: 620px
-  //   margin-left: 150px
-  //   &:last-child
-  //     margin-bottom: 0
-  // .fixed
-  //   position: fixed
-  //   top: 150px
-  //   left: 150px
-  //   width: 200px
 
-.photos-inner
-  width: 400px
-  margin: 100px 200px 0 0
-  ul
-    li
-      float: left
-      width: 50%
-      list-style-type: none
-  img
-    display: block
-    margin: 0 0 4em 0
-    max-width: 100%
-    background: #fff
-    border-radius: 1px
-    padding: 14px 14px 63px 14px
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(0, 0, 0, 0.1)
+
+.fixed
+  background-color: #FFF
+  padding: 14px
+  width: 200px
+  // position: relative
+  // top: 180px
+  &.active
+    position: fixed
+    top: 150px
+    right: 650px
+
+
 
 
 .block
   background-color: #262626
   background-color: rgba(38,38,38, 1)
-  padding: 12px
+  padding: 16px
   color: #ffffff
   font-size: 16px
   width: 40%
+  &.w_auto
+    width: auto
+
   h1
     font-size: 24px
+
+
+
+
+
+.images
+  width: 450px
+  margin: 100px 200px 0 0
+  ul
+    li
+      float: left
+      width: 186px
+      list-style-type: none
+      margin: 0 18px 30px
+  img
+    display: block
+    margin: 0 0 14px 0
+    width: 186px
+    height: 80px
+    background: #fff
+  strong
+    font-size: 16px
+    display: block
+
+
+
+.experts
+  width: 380px
+  margin: 100px 200px 0 0
+  ul
+    li
+      width: 100%
+      list-style: none
+      margin: 0 0px 20px 0
+      cursor: pointer
+      display: block
+      height: 100%
+      &:hover
+        strong, span
+          text-decoration: underline
+  img
+    display: inline-block
+    margin: 0 0 14px 0
+    width: 50px
+    height: 50px
+    background: #fff
+  strong
+    font-size: 16px
+    display: block
+  span
+    display: block
+
+.sliders
+  .slide
+    position: relative
+    &.active
+      .more
+        display: block
+        position: absolute
+        width: 570px
+        height: auto
+        background-color: #FFF
+        color: #000
+        top: 0
+        z-index: 1
+        cursor: default
+  .item-img
+    float: left
+    img
+  .item-info
+    float: left
+  .item-close
+    color: #b0b0b0
+    font-size: 28px
+    text-decoration: none
+    position: absolute
+    right: 24px
+    top: 18px
+  .controls
+    .control
+      cursor: pointer
+
+  .more
+    display: none
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
