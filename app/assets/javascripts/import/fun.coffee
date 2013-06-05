@@ -2,10 +2,11 @@ $ ->
   $fixed = $('.fixed-block')
   $fixed.removeClass("active")
 
-  $(".slide").click ->
+  $(".a-show").click ->
     root = $(this).closest(".sliders")
     root.find(".slide").removeClass "active"
-    $(this).addClass "active"
+    $(this).closest(".slide").addClass "active"
+    false
 
 
 
@@ -25,6 +26,15 @@ $ ->
         $root.find(".slide").eq(0).addClass "active"
       else
         $root.find(".slide").eq(current + 1).addClass "active"
+
+    if $root.attr("scroll")
+      $("body").scrollTo $root.find(".slide.active"), 800,
+        offset:
+          top: -150
+
+
+
+
     false
 
 

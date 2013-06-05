@@ -2,13 +2,9 @@
 - if contact
   .cf
     .block.center{:style => "margin: 25% auto 0 auto; width: 420px"}
-      %h1 Контакты
-      %p Наша работа также позволяет нам оставаться смелыми в поиске решений и сохранять чувство юмора и здравый смысл. Что для нас – немаловажно!
-      %br
-      %p
-        Телефон: +7 (963) 567 54 65
-        %br
-        E-mail: post@hr-tema.ru
+      %h1=contact.title
+      = raw contact.content
+
 
 - footer = StaticBlock.find_by_id 3
 - if footer

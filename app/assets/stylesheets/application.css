@@ -32,7 +32,7 @@ html{
 }
 
 .curtains>li{
-    -webkit-transform:translateZ(0);
+/*    -webkit-transform:translateZ(0);*/
     background: white;
     position: fixed;
     display:block;
@@ -48,6 +48,11 @@ html{
 
 
 
+
+.curtains>li {
+  box-shadow:0 0 12px #000;
+}
+.curtains>li:last-child{box-shadow:none}
 
 
 

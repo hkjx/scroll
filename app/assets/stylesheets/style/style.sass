@@ -34,11 +34,11 @@ body
   -webkit-font-smoothing: antialiased
 
 h1, h2
-  font-family: 'DINProBold'
+  // font-family: 'DINProBold'
   font-weight: bold
 
 h4, h5, h6
-  font-family: 'DINProBold'
+  // font-family: 'DINProBold'
   font-weight: bold
 
 h4
@@ -152,7 +152,7 @@ article
   position: fixed
   z-index: 20
   left: 20px
-  top: 160px
+  top: 120px
   text-indent: -9999px
 
 #footer
@@ -169,8 +169,10 @@ article
   a
     color: #fff
 .section
-  background-size: cover
-  // background-color: #0e0b0b!important
+  -webkit-background-size: cover!important
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-position: center
 
 
 .container
@@ -182,16 +184,18 @@ article
   // width: 1024px
 
 #section-1
-  background: url(/assets/section-1.jpg) 50% 0 no-repeat
+  background: url(/assets/section-1.jpg) no-repeat
+  background-attachment: fixed
 #section-2
-  background: url(/assets/section-2.jpg) 50% 0 no-repeat
-  // background-attachment: fixed
-
+  background: url(/assets/section-2.jpg) no-repeat
+  background-attachment: fixed
 #section-3
-  background: url(/assets/section-3.jpg) 50% 0 no-repeat
+  background: url(/assets/section-3.jpg) no-repeat
+  background-attachment: fixed
+
 #section-4
-  background: url(/assets/section-4.jpg) 50% 0 no-repeat
-  // background-attachment: fixed
+  background: url(/assets/section-4.jpg) no-repeat
+  background-attachment: fixed
 
 #section-3
 
@@ -223,14 +227,14 @@ article
     width: auto
 
   h1
-    font-size: 26px
+    font-size: 28px
     line-height: 1
     margin: 0 0 16px 0
   .h2
     display: inline-block
     font-size: 27px
 
-  .a-show
+  a.a-show
     color: #fff
     text-decoration: underline
     margin: 10px 0
@@ -247,6 +251,15 @@ article
       width: 186px
       list-style-type: none
       margin: 0 40px 30px 0
+    .a-show
+      cursor: pointer
+      position: static
+    .more
+      left: 0
+    h3
+      font-weight: bold
+
+
   img
     display: block
     margin: 0 0 14px 0
@@ -258,9 +271,17 @@ article
     display: block
 
 
+.content
+  h1
+    font-size: 30px
+    margin: 14px 0 4px 0
+  h2
+    font-size: 28px
+    margin: 10px 0 4px 0
+    font-weight: normal
 
 .experts
-  width: 380px
+  width: 480px
   margin: 100px 200px 0 0
   ul
     li
@@ -301,6 +322,7 @@ article
         padding: 0 0 40px 0
         color: #000
         top: 0
+        min-height: 140px
         z-index: 1
         cursor: default
   .item-img
@@ -353,6 +375,68 @@ article
 
 
 
+.help-block
+  color: gray
+  margin: 18px 0 0 0
+  span
+    font-size: 13px
+    &:first-child
+      &:before
+        content: "/"
+    &:after
+      content: "/"
+.line_of_works
+  h1
+    font-weight: normal
+  .more
+    top: -40px!important
+  .item-info
+    width: 470px
+    h3
+      font-weight: bold
+      margin-bottom: 14px
+
+  .line_of_work_1
+    width: 510px
+    margin: 15% 50% 0 0
+  .line_of_work_2
+    width: 310px
+    margin: 15% 35% 0 0
+  .line_of_work_3
+    width: 610px
+    margin: 15% 40% 0 0
+  .line_of_work_4
+  .line_of_work_5
+  .line_of_work_6
+
+
+
+
+
+
+
+
+
+
+
+
+#scroll-btn
+  z-index: 111
+  position: fixed
+  -ms-transform: rotate(90deg)
+  -webkit-transform: rotate(90deg)
+  transform: rotate(90deg)
+  bottom: 80px
+  left: 0
+  a
+    font-size: 90px
+    font-family: Arial
+    color: #fff
+    margin-right: 35px
+
+
+
+.html
 
 
 

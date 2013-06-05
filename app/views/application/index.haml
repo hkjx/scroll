@@ -9,28 +9,35 @@
     %a.curtain-links{:href => "#section-4"} Контакты
 
 
+
+#scroll-btn
+  %a.up{:href => "#up"} <
+  %a.down{:href => "#down"} >
+
+
+
 - social = StaticBlock.find_by_id 4
 - if social
   #social
     = raw social.content
 
-= link_to "HR-Tema", "#", :id => "logo"
+= link_to "HR-Tema", root_url, :id => "logo"
 
 
 %ol.curtains
-  / %li#section-1.section
-  /   = render :partial => "section-company"
+  %li#section-1.section
+    = render :partial => "section-company"
 
 
-  / %li#section-2.section
-  /   = render :partial => "section-directions"
+  %li#section-2.section
+    = render :partial => "section-directions"
 
 
   %li#section-3.section
     = render :partial => "section-experience"
 
-  / %li#section-4.section
-  /   = render :partial => "section-сontacts"
+  %li#section-4.section
+    = render :partial => "section-сontacts"
 
 
 

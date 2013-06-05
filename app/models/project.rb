@@ -5,4 +5,8 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :project_images, :reject_if => proc { |attributes| attributes['image'].blank?}, :allow_destroy => true
 
   attr_accessible :general, :line_of_work_id, :title, :project_images_attributes
+
+  def self.get_general
+    where(:general => true).last
+  end
 end

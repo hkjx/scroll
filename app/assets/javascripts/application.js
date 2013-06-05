@@ -16,11 +16,11 @@
 
   $(function(){
        $('.curtains').curtain({
-           scrollSpeed: 300,
-           controls: '.menu',
+           scrollSpeed: 100,
+           controls: '#scroll-btn',
            curtainLinks: '.curtain-links',
            sectionElement: 'li',
-           nextSlide: function(){
+           nextSlide: function(e){
             console.log("ok");
            }
        });
