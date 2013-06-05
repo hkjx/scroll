@@ -25,6 +25,8 @@
            sectionElement: 'li',
            nextSlide: function(e){
             console.log("ok");
+           },
+           allLoaded: function() {
            }
        });
 
@@ -40,10 +42,6 @@
 $(document).ready(function() {
 
 
-    // $('#summary1').scrollToFixed({
-    //   // marginTop: 2000
-    //   // limit: $('#scroll1').height() + $('#scroll1').offset().top - $('#summary1').height()
-    // });
 
 
     // $('#summary2').scrollToFixed({

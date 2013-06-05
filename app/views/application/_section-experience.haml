@@ -33,7 +33,7 @@
 - other_line = StaticBlock.find_by_id 10
 - if other_line
   .cf
-    .block.right.line_of_works{:style => "width: 55%; margin: 15% 35% 240px 0"}
+    .block.right.line_of_works{:style => "width: 55%; margin: 15% 5% 240px 0"}
       %h1= other_line.title
       = raw other_line.content
 
@@ -41,17 +41,17 @@
 
 
 .cf
-  .left
+  .left{:style => "width: 320px; margin: 0 0 0 14%;"}
     - experience = StaticBlock.find_by_id 8
     - if experience
-      .block#summary3{:style => "margin: 0 0 0 25%; width: 320px"}
+      .block#summary3.inline{:style => " width: 320px"}
         %h1=experience.title
         = raw experience.content
 
 
     - project_general = Project.get_general
     - if project_general
-      .block.left.project_general{:style => "margin: 100px 0 0 23%; width: 290px"}
+      .block.inline.project_general{:style => "margin: 100px 0 100px 10%; width: 290px"}
         %h1=project_general.title
         = image_tag project_general.project_images.first.image(:big)
 
@@ -65,25 +65,25 @@
 
   - projects = Project.all
   - if projects.present?
-    .sliders.block.images.scroll-block.right.projects#scroll3{:style => "margin: 0 auto 100px auto; right: 25%"}
+    .sliders.block.images.scroll-block.inline.projects#scroll3{:style => "margin: 0 auto 100px 70px;"}
       %ul.cf
-        - 4.times do
-          - projects.each do |project|
-            %li.slide.a-show
-              = image_tag project.project_images.first.image(:medium)
-              %span=project.title
-              .more.cf
-                %a.item-close{:href => "#"} ×
-                .controls
-                  .control.prev  <
-                  .control.next >
-                .item-info
-                  %h3= project.title
-                  .content
-                    = raw project.content
-                  .help-block
-                    %span
-                      = project.line_of_work.title
+
+        - projects.each do |project|
+          %li.slide.a-show
+            = image_tag project.project_images.first.image(:medium)
+            %span=project.title
+            .more.cf
+              %a.item-close{:href => "#"} ×
+              .controls
+                .control.prev  <
+                .control.next >
+              .item-info
+                %h3= project.title
+                .content
+                  = raw project.content
+                .help-block
+                  %span
+                    = project.line_of_work.title
 
 
 
