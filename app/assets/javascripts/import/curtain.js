@@ -475,12 +475,12 @@
             el.parent().siblings(this.sectionElement).removeClass('active');
             el.parent().addClass('active');
 
-            if(history.pushState) {
-                history.pushState(null, null, '#'+hash);
-            }
-            else {
-                location.hash = hash;
-            }
+            // if(history.pushState) {
+            //     history.pushState(null, null, '#'+hash);
+            // }
+            // else {
+            //     location.hash = hash;
+            // }
         },
         setCache: function(){
             var self = this;

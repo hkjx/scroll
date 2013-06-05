@@ -24,9 +24,24 @@
            curtainLinks: '.curtain-links',
            sectionElement: 'li',
            nextSlide: function(e){
-            console.log("ok");
+            console.log(e);
+            if(e == 'section-2'){
+              $('#summary1').stickyScroll({ container: '#scroll1' });
+              $('#summary2').stickyScroll({ container: '#scroll2' });
+            }
+
+
+            if(e == 'section-3'){
+              $('#summary3').stickyScroll({ container: '#scroll3' });
+            }
+
            },
+
+           prevSlide: function(e){
+           },
+
            allLoaded: function() {
+
            }
        });
 
@@ -41,9 +56,9 @@
 
 $(document).ready(function() {
 
-
-
-
+    // $('#summary1').stickyScroll({ container: '#scroll1' });
+    // $('#summary2').stickyScroll({ container: '#scroll2' });
+    // $('#summary3').stickyScroll({ container: '#scroll3' });
     // $('#summary2').scrollToFixed({
     //   marginTop: 300,
     //   limit: $('#scroll2').height() + $('#scroll2').offset().top - $('#summary2').height()

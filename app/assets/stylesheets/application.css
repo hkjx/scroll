@@ -72,3 +72,9 @@ html{
 
 
 
+
+.sidebar { float: left; width: 180px;min-height:1px; }
+.fixed { position:fixed!important;top:120px;width:100%;width: 180px;}
+.fixed-bottom {position:absolute;top:auto;bottom:0;width: 180px;}
+.fixme {background:blue;overflow:hidden;}
+

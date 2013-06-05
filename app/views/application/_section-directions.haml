@@ -12,14 +12,16 @@
       %h1=client.title
       = raw client.content
 
+
   - clients = Client.all
   - if clients.present?
-    .block.images#scroll1.inline
+    .block.images#scroll1.right
       %ul.cf
         - clients.each do |cl|
           %li
             = image_tag cl.image(:medium)
             %span=cl.title
+
 
 .cf{:style => "margin: 180px 0;"}
   - expert = StaticBlock.find_by_id 7
@@ -31,7 +33,7 @@
 
   - experts = Specialist.all
   - if experts.present?
-    .block.inline.experts.sliders#scroll2
+    .block.right.experts.sliders#scroll2
       %ul
         - experts.each do |ex|
           %li.slide.a-show

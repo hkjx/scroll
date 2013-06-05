@@ -41,19 +41,30 @@
 
 
 .cf
-  .left{:style => "width: 320px; margin: 0 0 0 14%;"}
+  .left#summary3{:style => "width: 320px; margin: 0 0 0 14%;"}
     - experience = StaticBlock.find_by_id 8
     - if experience
-      .block#summary3.inline{:style => " width: 320px"}
+      .block.inline{:style => " width: 320px"}
         %h1=experience.title
         = raw experience.content
 
 
     - project_general = Project.get_general
     - if project_general
-      .block.inline.project_general{:style => "margin: 100px 0 100px 10%; width: 290px"}
-        %h1=project_general.title
-        = image_tag project_general.project_images.first.image(:big)
+      .sliders.block.inline.project_general{:style => "margin: 100px 0 100px 10%; width: 290px"}
+        .a-show.slide
+          %h1=project_general.title
+          = image_tag project_general.project_images.first.image(:big)
+
+          .more.cf
+            %a.item-close{:href => "#"} ×
+            .item-info
+              %h3= project_general.title
+              .content
+                = raw project_general.content
+              .help-block
+                %span
+                  = project_general.line_of_work.title
 
 
 
@@ -65,9 +76,8 @@
 
   - projects = Project.all
   - if projects.present?
-    .sliders.block.images.scroll-block.inline.projects#scroll3{:style => "margin: 0 auto 100px 70px;"}
+    .sliders.block.images.scroll-block.right.projects#scroll3{:style => "margin: 0 8% 0 0;"}
       %ul.cf
-
         - projects.each do |project|
           %li.slide.a-show
             = image_tag project.project_images.first.image(:medium)
@@ -86,5 +96,3 @@
                     = project.line_of_work.title
 
 
-
-.c
