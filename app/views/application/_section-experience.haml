@@ -1,7 +1,7 @@
 - line = StaticBlock.find_by_id 9
 - if line
   .cf
-    .block.right{:style => "width: 640px; margin: 20% 30% 0 0"}
+    .block.right{:style => "width: 40%; margin: 20% 30% 0 0"}
       %h1= line.title
       = raw line.content
 
@@ -33,7 +33,7 @@
 - other_line = StaticBlock.find_by_id 10
 - if other_line
   .cf
-    .block.right.line_of_works{:style => "width: 720px; margin: 15% 35% 0 0"}
+    .block.right.line_of_works{:style => "width: 55%; margin: 15% 35% 240px 0"}
       %h1= other_line.title
       = raw other_line.content
 
@@ -41,48 +41,50 @@
 
 
 .cf
-  - experience = StaticBlock.find_by_id 8
-  - if experience
-    .block.inline{:style => "margin: 10% 0 0 25%; width: 320px"}
-      %h1=experience.title
-      = raw experience.content
-
-.cf
-  - project_general = Project.get_general
-  - if project_general
-    .block.inline{:style => "margin: 10% 0 0 15%; width: 290px"}
-      %h1=project_general.title
-      = image_tag project_general.project_images.first.image(:big)
+  .left
+    - experience = StaticBlock.find_by_id 8
+    - if experience
+      .block#summary3{:style => "margin: 0 0 0 25%; width: 320px"}
+        %h1=experience.title
+        = raw experience.content
 
 
-.cf
+    - project_general = Project.get_general
+    - if project_general
+      .block.left.project_general{:style => "margin: 100px 0 0 23%; width: 290px"}
+        %h1=project_general.title
+        = image_tag project_general.project_images.first.image(:big)
+
+
+
+
+
+
+
+
+
   - projects = Project.all
   - if projects.present?
-    .sliders.block.images.scroll-block.right{:style => "margin: 0 auto 100px auto; right: 25%"}
+    .sliders.block.images.scroll-block.right.projects#scroll3{:style => "margin: 0 auto 100px auto; right: 25%"}
       %ul.cf
-        - projects.each do |project|
-          %li.slide.a-show
-            = image_tag project.project_images.first.image(:medium)
-            %span=project.title
-            .more.cf
-              %a.item-close{:href => "#"} ×
-              .controls
-                .control.prev  <
-                .control.next >
-              .item-info
-                %h3= project.title
-                / = raw project.content
-                / .help-block
-                /   - project.line_of_works.each do |line|
-                /     %span=line.title
+        - 4.times do
+          - projects.each do |project|
+            %li.slide.a-show
+              = image_tag project.project_images.first.image(:medium)
+              %span=project.title
+              .more.cf
+                %a.item-close{:href => "#"} ×
+                .controls
+                  .control.prev  <
+                  .control.next >
+                .item-info
+                  %h3= project.title
+                  .content
+                    = raw project.content
+                  .help-block
+                    %span
+                      = project.line_of_work.title
 
 
 
-
-
-
-
-
-
-
-
+.c

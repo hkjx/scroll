@@ -48,16 +48,15 @@ $ ->
 
   # $(window).scroll ->
   #   if $(window).scrollTop() >= $(".scroll-block").offset().top - 300
-  #     $fixed.addClass("active")
+  #     $fixed.addClass("active").css("top":$fixed.height())
+  #     $fixed.css("margin-top":140)
   #   else
   #     $fixed.removeClass("active")
 
 
 
   #   console.log "scrollTop " + $(window).scrollTop()
-
-  #   console.log "offsetTop " + $(".scroll-block").offset().top  + $(".scroll-block").height()
-
-  #   if $(window).scrollTop() - 420 > $(".scroll-block").offset().top
+  #   console.log  $(".scroll-block").offset().top
+  #   if $(window).scrollTop() - $(".scroll-block").height()  >= $(".scroll-block").offset().top - 400
   #     $fixed.removeClass("active")
-  #     $fixed.css("top":$(".scroll-block").height()-00)
+  #     $fixed.css("margin-top":$(".scroll-block").height())

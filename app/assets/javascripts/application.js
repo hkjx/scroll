@@ -15,6 +15,9 @@
 // = require_tree ./import
 
   $(function(){
+
+
+
        $('.curtains').curtain({
            scrollSpeed: 100,
            controls: '#scroll-btn',
@@ -24,4 +27,51 @@
             console.log("ok");
            }
        });
+
+
+
+
+
     });
+
+
+
+
+$(document).ready(function() {
+
+
+    // $('#summary1').scrollToFixed({
+    //   // marginTop: 2000
+    //   // limit: $('#scroll1').height() + $('#scroll1').offset().top - $('#summary1').height()
+    // });
+
+
+    // $('#summary2').scrollToFixed({
+    //   marginTop: 300,
+    //   limit: $('#scroll2').height() + $('#scroll2').offset().top - $('#summary2').height()
+    // });
+
+    // $('#summary3').scrollToFixed({
+    //   marginTop: 300,
+    //   limit: $('#scroll3').height() + $('#scroll3').offset().top - $('#summary3').height()
+    // });
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
