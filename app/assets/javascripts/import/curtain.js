@@ -14,7 +14,7 @@
 
     var pluginName = 'curtain',
         defaults = {
-            scrollSpeed: 400,
+            scrollSpeed: 100,
             bodyHeight: 0,
             linksArray: [],
             mobile: false,

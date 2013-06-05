@@ -17,6 +17,7 @@ ActiveAdmin.register Project do
       attributes_table do
         row :title
         row :line_of_work
+        row :content
         row :general
       end
     end
@@ -36,6 +37,11 @@ ActiveAdmin.register Project do
                     td do
                       image_tag pi.image.url(:medium)
                     end
+                  tr do
+                    td do
+                      "general - #{pi.general}"
+                    end
+                  end
                   end
                 end
               end
@@ -52,10 +58,11 @@ ActiveAdmin.register Project do
     f.inputs "Project details" do
       f.input :line_of_work
       f.input :title
+      f.input :content, as: :ckeditor
       f.input :general
       f.has_many :project_images do |i|
         i.input :_destroy, as: :boolean, required: false, label: 'Remove' if i.object.id.present?
-        i.input :image, as: :file
+        i.input :image, as: :file, :hint => f.template.image_tag(i.object.image.url(:medium))
         i.input :general
       end
     end
