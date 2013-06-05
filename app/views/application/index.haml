@@ -1,5 +1,5 @@
 #menu.cf
-  %li
+  %li.active
     %a.curtain-links{:href => "#section-1"} Компания
   %li
     %a.curtain-links{:href => "#section-2"} Направления работы
@@ -11,7 +11,8 @@
 
 - social = StaticBlock.find_by_id 4
 - if social
-  = raw social.content
+  #social
+    = raw social.content
 
 = link_to "HR-Tema", "#", :id => "logo"
 
