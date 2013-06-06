@@ -37,11 +37,11 @@ ActiveAdmin.register Project do
                     td do
                       image_tag pi.image.url(:medium)
                     end
-                  tr do
                     td do
-                      "general - #{pi.general}"
+                      b do
+                        "It's general image" if pi.general
+                      end
                     end
-                  end
                   end
                 end
               end
@@ -62,7 +62,7 @@ ActiveAdmin.register Project do
       f.input :general
       f.has_many :project_images do |i|
         i.input :_destroy, as: :boolean, required: false, label: 'Remove' if i.object.id.present?
-        i.input :image, as: :file, :hint => f.template.image_tag(i.object.image.url(:medium))
+        i.input :image, as: :file, :hint => f.template.image_tag(i.object.image.url(:medium)), :input_html => {:value => i.object.image.url(:medium)}
         i.input :general
       end
     end

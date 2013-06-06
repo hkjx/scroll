@@ -80,7 +80,7 @@
       %ul.cf
         - projects.each do |project|
           %li.slide.a-show
-            = image_tag project.project_images.first.image(:medium)
+            = image_tag project.project_images.first.image(:medium) if not project.project_images.blank?
             %span=project.title
             .more.cf
               %a.item-close{:href => "#"} ×
@@ -93,6 +93,6 @@
                   = raw project.content
                 .help-block
                   %span
-                    = project.line_of_work.title
+                    = project.line_of_work.try(:title)
 
 
