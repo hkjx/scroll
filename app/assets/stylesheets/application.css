@@ -22,42 +22,9 @@ body    {font-family: 'DINProRegular', Arial; color: #fff;}
 
 html{
     height: 100%;
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
+    background-color: #eee;
 }
-
-.curtains{
-    width: 100%;
-    z-index:1;
-    position:relative;
-}
-
-.curtains>li{
-/*    -webkit-transform:translateZ(0);*/
-    background: white;
-    position: fixed;
-    display:block;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100%;
-    /*overflow: hidden;*/
-    z-index:1;
-}
-.curtains>li.hidden{display:none;}
-.curtains>li:first-child{z-index:2;}
-
-
-
-
-.curtains>li {
-  box-shadow:0 0 12px #000;
-}
-.curtains>li:last-child{box-shadow:none}
-
-
-
-
-
 
 
 @font-face {

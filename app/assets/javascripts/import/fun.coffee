@@ -45,6 +45,45 @@ $ ->
 
 
 
+  window.scrollTo 0, 0
+
+  $(window).resize ->
+    # window.scrollTo ($(document).width() - $(window).width()) / 3, 0
+    #  $(window).scrollLeft($(elementToScrollTo).position().left);
+  $("#menu a#s1").click ->
+    $("html, body").scrollTo "0px", 400
+
+  $("#menu a#s2").click ->
+    $("html, body").scrollTo "33.33333%", 400, #only scroll on this axis (can be x, y, xy or yx)
+      axis: "x"
+
+  $("#menu a#s3").click ->
+    $("html, body").scrollTo "66.66666%", 400, #only scroll on this axis (can be x, y, xy or yx)
+      axis: "x"
+
+  $("#menu a#s4").click ->
+    $("html, body").scrollTo "99.9999%", 400, #only scroll on this axis (can be x, y, xy or yx)
+      axis: "x"
+
+  $.localScroll
+    target: ".curtains" # could be a selector or a jQuery object too.
+    queue: true
+    duration: 400
+    hash: true
+    onBefore: (e, anchor, $target) ->
+      $("#menu li").removeClass("active")
+      $("#menu a[href='##{$(anchor).attr("id")}']").parent().addClass("active")
+
+    # The 'this' is the settings object, can be modified
+    onAfter: (anchor, settings) ->
+
+
+  # The 'this' contains the scrolled element (#content)
+
+
+
+  # $("#menu").stickyScroll container: "body"
+
 
   # $(window).scroll ->
   #   if $(window).scrollTop() >= $(".scroll-block").offset().top - 300

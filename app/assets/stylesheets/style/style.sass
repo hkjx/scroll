@@ -32,6 +32,36 @@ body
   padding: 0
   margin: 0
   -webkit-font-smoothing: antialiased
+  height: 100%
+  // overflow: hidden
+
+
+.curtains
+  overflow: hidden
+  width: 400%
+  height: 100%
+  // margin: 0 0 40px 0
+
+.section
+  float: left
+  padding: 10px
+  text-align: center
+  width: 25%
+  min-height: 100%
+
+
+.container
+  overflow: hidden
+  height: 98%
+  width: 98%
+  position: absolute
+  border: 1px solid #000
+
+.scroll
+  overflow: scroll
+  height: 102%
+  width: 102%
+
 
 h1, h2
   // font-family: 'DINProBold'
@@ -76,29 +106,40 @@ article
 
 
 
+.main
+  max-width: 1400px
+  min-width: 800px
+  position: relative
+  margin: 0 auto
 
 
 #menu
   position: fixed
   top: 20px
   z-index: 20
-  border-top: 6px solid #fff
-  width: 98%
-  left: 1%
-  &:before, &:after
-    content: ""
-    display: block
-    position: absolute
-    width: 17px
-    height: 17px
-    -webkit-border-radius: 50%
-    border-radius: 50%
-    background-color: #fff
-    top: -12px
-  &:before
-    left: 0
-  &:after
-    right: 0
+  width: 100%
+  left: 0
+  ul
+    max-width: 1400px
+    min-width: 800px
+    margin: 0 auto
+    position: relative
+    border-top: 6px solid #fff
+    &:before, &:after
+      content: ""
+      display: block
+      position: absolute
+      width: 17px
+      height: 17px
+      -webkit-border-radius: 50%
+      border-radius: 50%
+      background-color: #fff
+      top: -12px
+    &:before
+      left: 0
+    &:after
+      right: 0
+
   li
     margin: 10px 0 0 0
     width: 25%
@@ -175,13 +216,6 @@ article
   background-position: center
 
 
-.container
-  // height: 500px
-  // left: 50%
-  // margin: -250px 0 0 -512px
-  // position: absolute
-  // top: 50%
-  // width: 1024px
 
 #section-1
   background: url(/assets/section-1.jpg) no-repeat

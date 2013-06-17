@@ -1,44 +1,53 @@
-
-#menu.cf
-  %li.active
-    %a.curtain-links{:href => "#section-1"} Компания
-  %li
-    %a.curtain-links{:href => "#section-2"} Направления работы
-  %li
-    %a.curtain-links{:href => "#section-3"} Опыт
-  %li
-    %a.curtain-links{:href => "#section-4"} Контакты
-
-
-
-#scroll-btn
-  %a.up{:href => "#up"} <
-  %a.down{:href => "#down"} >
+.main
+  #menu.cf
+    %ul
+      %li.active
+        %a.curtain-links#s1{:href => "#section-1"} Компания
+      %li
+        %a.curtain-links#s2{:href => "#section-2"} Направления работы
+      %li
+        %a.curtain-links#s3{:href => "#section-3"} Опыт
+      %li
+        %a.curtain-links#s4{:href => "#section-4"} Контакты
 
 
 
-- social = StaticBlock.find_by_id 4
-- if social
-  #social
-    = raw social.content
+  #scroll-btn
+    %a.up{:href => "#up"} <
+    %a.down{:href => "#down"} >
 
-= link_to "HR-Tema", root_url, :id => "logo"
+
+
+  - social = StaticBlock.find_by_id 4
+  - if social
+    #social
+      = raw social.content
+
+  = link_to "HR-Tema", root_url, :id => "logo"
 
 
 %ol.curtains
   %li#section-1.section
-    = render :partial => "section-company"
-
+    .container
+      .scroll
+        = render :partial => "section-company"
 
   %li#section-2.section
-    = render :partial => "section-directions"
-
+    .container
+      .scroll
+        - 3.times do
+          = render :partial => "section-directions"
 
   %li#section-3.section
-    = render :partial => "section-experience"
+    .container
+      .scroll
+        = render :partial => "section-experience"
 
   %li#section-4.section
-    = render :partial => "section-сontacts"
+    .container
+      .scroll
+        = render :partial => "section-сontacts"
+
 
 
 
