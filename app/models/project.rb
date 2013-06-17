@@ -8,14 +8,15 @@ class Project < ActiveRecord::Base
 
   after_save :break_other_general, :if => -> project { project.general }
 
+  def self.get_general
+    where(:general => true).last
+  end
+
 private
 
   def break_other_general
     self.class.where('id != ?', id).update_all(general: false)
   end
 
-  def self.get_general
-    where(:general => true).last
-  end
 
 end
