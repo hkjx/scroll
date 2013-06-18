@@ -14,42 +14,9 @@
 //= require jquery_ujs
 // = require_tree ./import
 
-  $(function(){
+$(function(){
 
-
-
-       // $('.curtains').curtain({
-       //     scrollSpeed: 100,
-       //     controls: '#scroll-btn',
-       //     curtainLinks: '.curtain-links',
-       //     sectionElement: 'li',
-       //     nextSlide: function(e){
-       //      console.log(e);
-       //      if(e == 'section-2'){
-       //        $('#summary1').stickyScroll({ container: '#scroll1' });
-       //        $('#summary2').stickyScroll({ container: '#scroll2' });
-       //      }
-
-
-       //      if(e == 'section-3'){
-       //        $('#summary3').stickyScroll({ container: '#scroll3' });
-       //      }
-
-       //     },
-
-       //     prevSlide: function(e){
-       //     },
-
-       //     allLoaded: function() {
-
-       //     }
-       // });
-
-
-
-
-
-    });
+});
 
 
 

@@ -1,47 +1,6 @@
-- line = StaticBlock.find_by_id 9
-- if line
-  .cf
-    .block.right{:style => "width: 40%; margin: 20% 30% 0 0"}
-      %h1= line.title
-      = raw line.content
-
-
-- line_of_work = LineOfWork.all
-- if line_of_work
-  .sliders.line_of_works.cf{ :scroll => "true" }
-    - line_of_work.each do |line|
-
-      .block.right.slide{:class => "line_of_work_#{line.id}" }
-        %h1= line.title
-        = raw line.content
-        - if line.popup_content.present?
-          = link_to "Подробнее", "#", :class => "a-show"
-          .more.cf
-            %a.item-close{:href => "#"} ×
-            .controls
-              .control.prev  <
-              .control.next >
-            .item-info
-              %h3= line.title
-              = raw line.popup_content
-              .help-block
-                - line.projects.each do |pr|
-                  %span=pr.title
-
-
-
-- other_line = StaticBlock.find_by_id 10
-- if other_line
-  .cf
-    .block.right.line_of_works{:style => "width: 55%; margin: 15% 5% 240px 0"}
-      %h1= other_line.title
-      = raw other_line.content
-
-
-
 
 .cf
-  .left#summary3{:style => "width: 320px; margin: 0 0 0 14%;"}
+  .left#summary3{:style => "width: 320px; margin: 150px 0 0 14%;"}
     - experience = StaticBlock.find_by_id 8
     - if experience
       .block.inline{:style => " width: 320px"}
@@ -68,15 +27,9 @@
 
 
 
-
-
-
-
-
-
   - projects = Project.all
   - if projects.present?
-    .sliders.block.images.scroll-block.right.projects#scroll3{:style => "margin: 0 8% 0 0;"}
+    .sliders.block.images.scroll-block.right.projects#scroll3{:style => "margin: 150px 8% 0 0;"}
       %ul.cf
         - projects.each do |project|
           %li.slide.a-show

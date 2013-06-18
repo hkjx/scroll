@@ -4,7 +4,10 @@ $ ->
 
   $(".a-show").click ->
     root = $(this).closest(".sliders")
-    root.find(".slide").removeClass "active"
+    root.find(".slide").removeClass("active")
+    root.find(".more").css
+      top: $(this).position().top
+      left: $(this).position().left
     $(this).closest(".slide").addClass "active"
     false
 
@@ -27,10 +30,10 @@ $ ->
       else
         $root.find(".slide").eq(current + 1).addClass "active"
 
-    if $root.attr("scroll")
-      $("body").scrollTo $root.find(".slide.active"), 800,
-        offset:
-          top: -150
+    # if $root.attr("scroll")
+    #   $("body").scrollTo $root.find(".slide.active"), 800,
+    #     offset:
+    #       top: -150
 
 
 
@@ -45,24 +48,37 @@ $ ->
 
 
 
-  window.scrollTo 0, 0
+
+  hash = window.location.hash
+  if hash
+    console.log hash
+    $("#menu a[href='#{hash}']").parent().addClass("active")
+  else
+    $("#menu a:first").parent().addClass("active")
+  # window.scrollTo 0, 0
 
   $(window).resize ->
     # window.scrollTo ($(document).width() - $(window).width()) / 3, 0
-    #  $(window).scrollLeft($(elementToScrollTo).position().left);
-  $("#menu a#s1").click ->
+    $active = $("#menu li.active a").attr("href")
+    $(window).scrollLeft($($active).position().left);
+
+
+  $("#menu a#s0").click ->
     $("html, body").scrollTo "0px", 400
 
+  $("#menu a#s1").click ->
+    $("html, body").scrollTo "25%", 400
+
   $("#menu a#s2").click ->
-    $("html, body").scrollTo "33.33333%", 400, #only scroll on this axis (can be x, y, xy or yx)
+    $("html, body").scrollTo "50%", 400, #only scroll on this axis (can be x, y, xy or yx)
       axis: "x"
 
   $("#menu a#s3").click ->
-    $("html, body").scrollTo "66.66666%", 400, #only scroll on this axis (can be x, y, xy or yx)
+    $("html, body").scrollTo "75%", 400, #only scroll on this axis (can be x, y, xy or yx)
       axis: "x"
 
   $("#menu a#s4").click ->
-    $("html, body").scrollTo "99.9999%", 400, #only scroll on this axis (can be x, y, xy or yx)
+    $("html, body").scrollTo "100%", 400, #only scroll on this axis (can be x, y, xy or yx)
       axis: "x"
 
   $.localScroll
@@ -78,24 +94,26 @@ $ ->
     onAfter: (anchor, settings) ->
 
 
-  # The 'this' contains the scrolled element (#content)
+
+  $("#slider").slider
+    range: "max"
+    min: 0
+    max: 5
+    value: 2
+    slide: (event, ui) ->
+      console.log ui.value
 
 
 
-  # $("#menu").stickyScroll container: "body"
+
+  $(".scroll").scroll ->
+    if  $("#scroll1").offset().top <= 140 && $("#scroll1").offset().top >= 0 - $("#scroll1").height() + $("#summary1").height()
+      $("#summary1").addClass("absolute")
+    else
+      $("#summary1").removeClass("absolute")
 
 
-  # $(window).scroll ->
-  #   if $(window).scrollTop() >= $(".scroll-block").offset().top - 300
-  #     $fixed.addClass("active").css("top":$fixed.height())
-  #     $fixed.css("margin-top":140)
-  #   else
-  #     $fixed.removeClass("active")
-
-
-
-  #   console.log "scrollTop " + $(window).scrollTop()
-  #   console.log  $(".scroll-block").offset().top
-  #   if $(window).scrollTop() - $(".scroll-block").height()  >= $(".scroll-block").offset().top - 400
-  #     $fixed.removeClass("active")
-  #     $fixed.css("margin-top":$(".scroll-block").height())
+    if  $("#scroll2").offset().top <= 140 && $("#scroll2").offset().top >= 0 - $("#scroll2").height() + $("#summary2").height()
+      $("#summary2").addClass("absolute")
+    else
+      $("#summary2").removeClass("absolute")

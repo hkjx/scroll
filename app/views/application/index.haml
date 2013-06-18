@@ -1,7 +1,9 @@
 .main
   #menu.cf
     %ul
-      %li.active
+      %li#menu-index
+        %a.curtain-links#s0{:href => "#section-0"} 0
+      %li
         %a.curtain-links#s1{:href => "#section-1"} Компания
       %li
         %a.curtain-links#s2{:href => "#section-2"} Направления работы
@@ -10,6 +12,8 @@
       %li
         %a.curtain-links#s4{:href => "#section-4"} Контакты
 
+
+    #slider
 
 
   #scroll-btn
@@ -27,26 +31,34 @@
 
 
 %ol.curtains
+  %li#section-0.section
+    .container
+      .main
+        .scroll
+          = render :partial => "section-index"
   %li#section-1.section
     .container
-      .scroll
-        = render :partial => "section-company"
+      .main
+        .scroll
+          = render :partial => "section-company"
 
   %li#section-2.section
     .container
-      .scroll
-        - 3.times do
+      .main
+        .scroll
           = render :partial => "section-directions"
 
   %li#section-3.section
     .container
-      .scroll
-        = render :partial => "section-experience"
+      .main
+        .scroll
+          = render :partial => "section-experience"
 
   %li#section-4.section
     .container
-      .scroll
-        = render :partial => "section-сontacts"
+      .main
+        .scroll
+          = render :partial => "section-сontacts"
 
 
 

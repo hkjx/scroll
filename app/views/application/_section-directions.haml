@@ -1,58 +1,70 @@
-- history = StaticBlock.find_by_id 5
-- if history
+- line = StaticBlock.find_by_id 9
+- if line
   .cf
-    .block{:style => "margin: 300px auto 140px; width: 55%; "}
-      %h1= history.title
-      = raw history.content
+    .block.right{:style => "width: 40%; margin: 150px 30% 0 0"}
+      %h1= line.title
+      = raw line.content
+
+
+- line_of_work = LineOfWork.all
+- if line_of_work
+  .sliders.line_of_works.cf{ :scroll => "true" }
+    - line_of_work.each do |line|
+
+      .block.right.slide{:class => "line_of_work_#{line.id}" }
+        %h1= line.title
+        = raw line.content
+        - if line.popup_content.present?
+          = link_to "Подробнее", "#", :class => "a-show"
+          .more.cf
+            %a.item-close{:href => "#"} ×
+            .controls
+              .control.prev  <
+              .control.next >
+            .item-info
+              %h3= line.title
+              = raw line.popup_content
+              .help-block
+                - line.projects.each do |pr|
+                  %span=pr.title
+
+
+
+- other_line = StaticBlock.find_by_id 10
+- if other_line
+  .cf
+    .block.right.line_of_works{:style => "width: 55%; margin: 150px 5% 0 0"}
+      %h1= other_line.title
+      = raw other_line.content
+
+
+
 
 .cf
-  - client = StaticBlock.find_by_id 6
-  - if client
-    .block.inline.summary#summary1{:style => "margin: 0 0 0 20%; width: 220px"}
-      %h1=client.title
-      = raw client.content
+  .left#summary3{:style => "width: 320px; margin: 150px 0 150px 15%;"}
+    - experience = StaticBlock.find_by_id 8
+    - if experience
+      .block.inline{:style => " width: 320px"}
+        %h1=experience.title
+        = raw experience.content
 
 
-  - clients = Client.all
-  - if clients.present?
-    .block.images#scroll1.right
-      %ul.cf
-        - clients.each do |cl|
-          %li
-            = image_tag cl.image(:medium)
-            %span=cl.title
+    - project_general = Project.get_general
+    - if project_general
+      .sliders.block.inline.project_general{:style => "margin: 100px 0 100px 10%; width: 290px"}
+        .a-show.slide
+          %h1=project_general.title
+          = image_tag project_general.project_images.first.image(:big)
 
-
-.cf{:style => "margin: 180px 0;"}
-  - expert = StaticBlock.find_by_id 7
-  - if expert
-    .block.inline#summary2{:style => "margin: 0 0 0 13%; width: 350px"}
-      %h1=expert.title
-      = raw expert.content
-
-
-  - experts = Specialist.all
-  - if experts.present?
-    .block.right.experts.sliders#scroll2
-      %ul
-        - experts.each do |ex|
-          %li.slide.a-show
-            = image_tag ex.avatar(:medium)
-            .inline
-              %span= ex.name
-              %em= ex.position
-            .more.cf
-              %a.item-close{:href => "#"} ×
-              .controls
-                .control.prev  <
-                .control.next >
-              .item-img
-                = image_tag ex.avatar(:medium)
-              .item-info
-                %h3= ex.name
-                %span.position= ex.position
-                .content
-                  = raw ex.content
+          .more.cf
+            %a.item-close{:href => "#"} ×
+            .item-info
+              %h3= project_general.title
+              .content
+                = raw project_general.content
+              .help-block
+                %span
+                  = project_general.line_of_work.title
 
 
 
