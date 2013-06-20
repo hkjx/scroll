@@ -1,7 +1,8 @@
 - history = StaticBlock.find_by_id 5
+%a#s-history.d-scroll{ "down" => "s-client", "top" => "s-history"}
 - if history
   .cf
-    .block{:style => "margin: 220px auto 140px; width: 55%; "}
+    .block{:style => "margin: 220px auto 140px; width: 60%; "}
       %h1= history.title
       = raw history.content
 
@@ -13,6 +14,7 @@
       = raw client.content
 
 
+  %a#s-client.d-scroll{ "down" => "s-expert", "top" => "s-history"}
   - clients = Client.all
   - if clients.present?
     .block.images#scroll1.right
@@ -31,6 +33,7 @@
       = raw expert.content
 
 
+  %a#s-expert.d-scroll{ "down" => "s-expert" ,"top" => "s-client"}
   - experts = Specialist.all
   - if experts.present?
     .block.right.experts.sliders#scroll2

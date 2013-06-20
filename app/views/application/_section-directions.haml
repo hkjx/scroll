@@ -1,70 +1,63 @@
 - line = StaticBlock.find_by_id 9
+%a#s-line.d-scroll{ "down" => "line_of_work_1", "top" => "s-line"}
 - if line
   .cf
-    .block.right{:style => "width: 40%; margin: 150px 30% 0 0"}
+    .block.right{:style => "width: 40%; margin: 250px 30% 0 0"}
       %h1= line.title
       = raw line.content
 
 
 - line_of_work = LineOfWork.all
 - if line_of_work
-  .sliders.line_of_works.cf{ :scroll => "true" }
+  .sliders.line_of_works.cf
     - line_of_work.each do |line|
+      .cf
+        %a.d-scroll{ "down" => line == line_of_work.last ? "s-other_line" : "line_of_work_#{line.id+1}", "top" => line == line_of_work.first ? "s-line" : "line_of_work_#{line.id-1}", :id => "line_of_work_#{line.id}"}
+        .block.right.slide{:class => "line_of_work_#{line.id}" }
+          %h1= line.title
+          = raw line.content
+          - if line.popup_content.present?
+            = link_to "Подробнее", "#", :class => "a-show"
+            .more.cf
+              %a.item-close{:href => "#"} ×
+              .controls
+                .control.prev  <
+                .control.next >
+              .item-info
+                %h3= line.title
+                = raw line.popup_content
+                .help-block
+                  - line.projects.each do |pr|
+                    %span=pr.title
 
-      .block.right.slide{:class => "line_of_work_#{line.id}" }
-        %h1= line.title
-        = raw line.content
-        - if line.popup_content.present?
-          = link_to "Подробнее", "#", :class => "a-show"
-          .more.cf
-            %a.item-close{:href => "#"} ×
-            .controls
-              .control.prev  <
-              .control.next >
-            .item-info
-              %h3= line.title
-              = raw line.popup_content
-              .help-block
-                - line.projects.each do |pr|
-                  %span=pr.title
 
 
 
+%a#s-other_line.d-scroll{ "down" => "s-other_line", "top" => "line_of_work_#{line_of_work.last.id}" }
 - other_line = StaticBlock.find_by_id 10
 - if other_line
   .cf
-    .block.right.line_of_works{:style => "width: 55%; margin: 150px 5% 0 0"}
+    .block.right.line_of_works{:style => "width: 55%; margin: 250px 5% 350px 0"}
       %h1= other_line.title
       = raw other_line.content
 
 
 
 
-.cf
-  .left#summary3{:style => "width: 320px; margin: 150px 0 150px 15%;"}
-    - experience = StaticBlock.find_by_id 8
-    - if experience
-      .block.inline{:style => " width: 320px"}
-        %h1=experience.title
-        = raw experience.content
 
 
-    - project_general = Project.get_general
-    - if project_general
-      .sliders.block.inline.project_general{:style => "margin: 100px 0 100px 10%; width: 290px"}
-        .a-show.slide
-          %h1=project_general.title
-          = image_tag project_general.project_images.first.image(:big)
 
-          .more.cf
-            %a.item-close{:href => "#"} ×
-            .item-info
-              %h3= project_general.title
-              .content
-                = raw project_general.content
-              .help-block
-                %span
-                  = project_general.line_of_work.title
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -33,7 +33,7 @@ body
   margin: 0
   -webkit-font-smoothing: antialiased
   height: 100%
-  // overflow: hidden
+  overflow: hidden
 
 
 .curtains
@@ -71,11 +71,17 @@ body
   position: absolute!important
   top: 140px
 
+#slider-block
+  padding: 0
+  min-width: 800px
+  max-width: 1400px
+  margin: 0 auto
 #slider
   z-inedx: 101
   top: -4px
+  border: none
   .ui-slider-handle
-    margin-left: 11.5%
+    // margin-left: 11.5%
     border: none
     width: 5px
     background-color: #fff
@@ -83,7 +89,14 @@ body
     border-radius: 0
     height: 14px
     cursor: pointer
+#menu
+  ul
+    padding-left: 0
 
+.ui0
+  left: 17%!important
+.ui-slider-handle
+  margin-left: -13%!important
 h1, h2
   // font-family: 'DINProBold'
   font-weight: bold
@@ -146,6 +159,7 @@ article
     min-width: 800px
     margin: 0 auto
     position: relative
+    // padding-left: 0
     border-top: 4px solid #fff
     &:before, &:after
       content: ""
@@ -324,7 +338,8 @@ article
       cursor: pointer
       position: static
     .more
-      left: 0
+      left: 0!important
+      width: 500px!important
     h3
       font-weight: bold
 
@@ -473,13 +488,13 @@ article
 
   .line_of_work_1
     width: 40%
-    margin: 150px 35% 0 0
+    margin: 250px 35% 0 0
   .line_of_work_2
     width: 310px
-    margin: 150px 35% 0 0
+    margin: 250px 35% 0 0
   .line_of_work_3
     width: 50%
-    margin: 150px 26% 0 0
+    margin: 250px 26% 0 0
   .line_of_work_4
   .line_of_work_5
   .line_of_work_6
@@ -489,16 +504,14 @@ article
   h1
     font-weight: normal
   .more
-    top: -40px!important
   .item-info
-    width: 470px
+    width: 420px
     h3
       font-weight: bold
       margin-bottom: 14px
 
 .project_general
-  .more
-    left: 20px!important
+
 
 
 
@@ -509,17 +522,20 @@ article
 #scroll-btn
   z-index: 111
   position: fixed
-  -ms-transform: rotate(90deg)
-  -webkit-transform: rotate(90deg)
-  transform: rotate(90deg)
   bottom: 80px
-  left: 0
+  left: 74px
+  display: none
   a
-    font-size: 90px
-    font-family: Arial
-    color: #fff
-    margin-right: 35px
-
+    height: 44px
+    width: 42px
+    display: block
+    text-indent: -9999px
+    margin-bottom: 40px
+    background: url('/assets/arrows.png')
+    &.up
+      background-position: 0 0
+    &.down
+      background-position: -46px 0
 
 
 .html
@@ -556,11 +572,11 @@ article
 
 
 
-
-
-
-
-
+@media (max-width: 860px)
+  .absolute
+    position: static!important
+  // .main
+  //   overflow: scroll!important
 
 
 

@@ -51,11 +51,22 @@ $ ->
 
   hash = window.location.hash
   if hash
-    console.log hash
     $("#menu a[href='#{hash}']").parent().addClass("active")
+    if hash.search("section")
+      setBtnScroll $(hash).find(".d-scroll").eq(0).attr("id"), $(hash).find(".d-scroll").eq(1).attr("id")
   else
     $("#menu a:first").parent().addClass("active")
-  # window.scrollTo 0, 0
+
+
+
+  if hash == "#section-1" ||  hash == "#section-2"
+    $("#scroll-btn").show()
+  else
+    $("#scroll-btn").hide()
+
+
+
+  $(".scroll").scrollTop(0)
 
   $(window).resize ->
     # window.scrollTo ($(document).width() - $(window).width()) / 3, 0
@@ -63,23 +74,31 @@ $ ->
     $(window).scrollLeft($($active).position().left);
 
 
-  $("#menu a#s0").click ->
-    $("html, body").scrollTo "0px", 400
+  $("#scroll-btn a").click ->
 
-  $("#menu a#s1").click ->
-    $("html, body").scrollTo "25%", 400
+    top_b  = $("#scroll-btn a.up").attr("top")
+    down_b = $("#scroll-btn a.down").attr("down")
 
-  $("#menu a#s2").click ->
-    $("html, body").scrollTo "50%", 400, #only scroll on this axis (can be x, y, xy or yx)
-      axis: "x"
+    if $(this).is(".up")
+      top = $("#" + top_b)
+      block_scroll = top.closest(".scroll")
+      $(block_scroll).scrollTo top, 400,
+        axis: "y"
+      setBtnScroll top.attr("top"), top.attr("down")
+    else  # Down
+      down = $("#" + down_b)
 
-  $("#menu a#s3").click ->
-    $("html, body").scrollTo "75%", 400, #only scroll on this axis (can be x, y, xy or yx)
-      axis: "x"
+      block_scroll = down.closest(".scroll")
+      $(block_scroll).scrollTo down, 400,
+        axis: "y"
+      setBtnScroll down.attr("top"), down.attr("down")
 
-  $("#menu a#s4").click ->
-    $("html, body").scrollTo "100%", 400, #only scroll on this axis (can be x, y, xy or yx)
-      axis: "x"
+    log "top : " + $("#scroll-btn a.up").attr("top")
+    log  "down : " + $("#scroll-btn a.down").attr("down")
+
+    false
+
+
 
   $.localScroll
     target: ".curtains" # could be a selector or a jQuery object too.
@@ -89,20 +108,52 @@ $ ->
     onBefore: (e, anchor, $target) ->
       $("#menu li").removeClass("active")
       $("#menu a[href='##{$(anchor).attr("id")}']").parent().addClass("active")
-
     # The 'this' is the settings object, can be modified
     onAfter: (anchor, settings) ->
 
 
 
-  $("#slider").slider
+
+
+  slider = $("#slider").slider
     range: "max"
     min: 0
-    max: 5
-    value: 2
+    max: 4
+    value: $("#menu li.active").index()
     slide: (event, ui) ->
-      console.log ui.value
+      if ui.value == 0
+        $(".ui-slider-handle").addClass("ui0")
+      else
+        $(".ui-slider-handle").removeClass("ui0")
+    stop: (event, ui) ->
+      $("#menu li").removeClass("active")
+      $li = $("#menu a[href='#section-#{ui.value}']").parent().addClass("active")
+      $li.find("a").trigger('click')
 
+  if hash == "#section-0"
+    $(".ui-slider-handle").addClass("ui0")
+
+
+  $("#menu a").click ->
+    pr = $(this).parent().index()
+    pr = pr*25
+    $("html, body").scrollTo "#{pr}%", 400,
+      axis: "x"
+    setBtnScroll $($(this).attr("href")).find(".d-scroll").eq(0).attr("id"), $($(this).attr("href")).find(".d-scroll").eq(1).attr("id")
+
+    if $(this).parent().index() > 0
+      $(".ui-slider-handle").removeClass("ui0")
+
+    slider.slider "value", $(this).parent().index()
+
+
+    if $(this).attr("href") == "#section-1" ||  $(this).attr("href") == "#section-2"
+      $("#scroll-btn").show()
+    else
+      $("#scroll-btn").hide()
+
+
+    false
 
 
 
@@ -112,8 +163,21 @@ $ ->
     else
       $("#summary1").removeClass("absolute")
 
-
     if  $("#scroll2").offset().top <= 140 && $("#scroll2").offset().top >= 0 - $("#scroll2").height() + $("#summary2").height()
       $("#summary2").addClass("absolute")
     else
       $("#summary2").removeClass("absolute")
+
+
+    if  $("#scroll3").offset().top <= 140 && $("#scroll3").offset().top >= 0 - $("#scroll3").height() + $("#summary3").height()
+      $("#summary3").addClass("absolute")
+    else
+      $("#summary3").removeClass("absolute")
+
+
+
+@setBtnScroll = (top, down) ->
+  $("#scroll-btn .up").attr("top",top)
+  $("#scroll-btn .down").attr("down",down)
+@log = (data) ->
+  console.log data

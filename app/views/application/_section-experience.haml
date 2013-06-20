@@ -1,6 +1,5 @@
-
-.cf
-  .left#summary3{:style => "width: 320px; margin: 150px 0 0 14%;"}
+.cf{:style => "margin: 250px 0 250px 0"}
+  .left#summary3{:style => "width: 320px; margin: 0 0 0 18%;"}
     - experience = StaticBlock.find_by_id 8
     - if experience
       .block.inline{:style => " width: 320px"}
@@ -29,9 +28,10 @@
 
   - projects = Project.all
   - if projects.present?
-    .sliders.block.images.scroll-block.right.projects#scroll3{:style => "margin: 150px 8% 0 0;"}
+    .sliders.block.images.scroll-block.right.projects#scroll3{:style => "margin: 0 8% 0 0;"}
       %ul.cf
         - projects.each do |project|
+
           %li.slide.a-show
             = image_tag project.project_images.first.image(:medium) if not project.project_images.blank?
             %span=project.title
