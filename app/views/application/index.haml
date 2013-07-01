@@ -23,8 +23,9 @@
 
   - social = StaticBlock.find_by_id 4
   - if social
-    #social
-      = raw social.content
+    #social-block
+      #social
+        = raw social.content
 
   = link_to "HR-Tema", root_url, :id => "logo"
 

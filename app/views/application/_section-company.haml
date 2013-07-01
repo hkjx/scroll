@@ -1,15 +1,27 @@
+- welcome = StaticBlock.find_by_id 11
+%a#s-welcome.d-scroll{ "down" => "s-history", "top" => "s-welcome"}
+- if welcome
+  .cf
+    .block.left{:style => "margin: 220px 30px 140px 24%; width: 190px;"}
+      %br
+      = image_tag '/assets/del/i1.jpg'
+    .block.left{:style => "margin: 250px auto 140px; width: 40%;"}
+      %h1= welcome.title
+      = raw welcome.content
+
+
 - history = StaticBlock.find_by_id 5
-%a#s-history.d-scroll{ "down" => "s-client", "top" => "s-history"}
+%a#s-history.d-scroll{ "down" => "s-client", "top" => "s-welcome"}
 - if history
   .cf
     .block{:style => "margin: 220px auto 140px; width: 60%; "}
       %h1= history.title
       = raw history.content
 
-.cf
+.cf{:style => "margin: 0 0 0 24%; width: 820px"}
   - client = StaticBlock.find_by_id 6
   - if client
-    .block.inline.summary#summary1{:style => "margin: 0 0 0 20%; width: 220px"}
+    .block.inline.summary#summary1.sf{:style => "margin: 0 0 0 0; width: 220px", :target => "scroll1" }
       %h1=client.title
       = raw client.content
 
@@ -20,15 +32,16 @@
     .block.images#scroll1.right
       %ul.cf
         - clients.each do |cl|
+
           %li
             = image_tag cl.image(:medium)
             %span=cl.title
 
 
-.cf{:style => "margin: 180px 0;"}
+.cf{:style => "margin: 140px 0 140px 22%; width: 820px"}
   - expert = StaticBlock.find_by_id 7
   - if expert
-    .block.inline#summary2{:style => "margin: 0 0 0 13%; width: 350px"}
+    .block.inline#summary2.sf{:style => "width: 320px", :target => "scroll2"}
       %h1=expert.title
       = raw expert.content
 
@@ -38,6 +51,7 @@
   - if experts.present?
     .block.right.experts.sliders#scroll2
       %ul
+
         - experts.each do |ex|
           %li.slide.a-show
             = image_tag ex.avatar(:medium)
@@ -59,4 +73,4 @@
 
 
 
-
+= render :partial => "footer"

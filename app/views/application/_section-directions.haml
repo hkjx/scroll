@@ -37,7 +37,7 @@
 - other_line = StaticBlock.find_by_id 10
 - if other_line
   .cf
-    .block.right.line_of_works{:style => "width: 55%; margin: 250px 5% 350px 0"}
+    .block.right.line_of_works{:style => "width: 55%; margin: 250px 5% 250px 0"}
       %h1= other_line.title
       = raw other_line.content
 
@@ -46,7 +46,7 @@
 
 
 
-
+= render :partial => "footer"
 
 
 

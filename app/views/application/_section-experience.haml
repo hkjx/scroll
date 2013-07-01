@@ -1,5 +1,5 @@
-.cf{:style => "margin: 250px 0 250px 0"}
-  .left#summary3{:style => "width: 320px; margin: 0 0 0 18%;"}
+.cf{:style => "margin: 250px 0 150px 0"}
+  .left#summary3.sf{:style => "width: 320px; margin: 0 0 0 18%;", :target => "scroll3"}
     - experience = StaticBlock.find_by_id 8
     - if experience
       .block.inline{:style => " width: 320px"}
@@ -9,20 +9,12 @@
 
     - project_general = Project.get_general
     - if project_general
-      .sliders.block.inline.project_general{:style => "margin: 100px 0 100px 10%; width: 290px"}
-        .a-show.slide
+      .block.inline.project_general{:style => "margin: 100px 0 100px 10%; width: 290px"}
+        .a-show-project{:target => project_general.id }
           %h1=project_general.title
           = image_tag project_general.project_images.first.image(:big)
 
-          .more.cf
-            %a.item-close{:href => "#"} ×
-            .item-info
-              %h3= project_general.title
-              .content
-                = raw project_general.content
-              .help-block
-                %span
-                  = project_general.line_of_work.title
+
 
 
 
@@ -32,7 +24,7 @@
       %ul.cf
         - projects.each do |project|
 
-          %li.slide.a-show
+          %li.slide.a-show{ :id => "project_#{project.id}" }
             = image_tag project.project_images.first.image(:medium) if not project.project_images.blank?
             %span=project.title
             .more.cf
@@ -49,3 +41,4 @@
                     = project.line_of_work.try(:title)
 
 
+= render :partial => "footer"

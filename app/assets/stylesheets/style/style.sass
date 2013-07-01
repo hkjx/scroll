@@ -35,6 +35,10 @@ body
   height: 100%
   overflow: hidden
 
+.header-abs
+  position: absolute
+  left: 0
+  right: 0
 
 .curtains
   // overflow: hidden
@@ -70,6 +74,7 @@ body
 .absolute
   position: absolute!important
   top: 140px
+  margin-top: 0!important
 
 #slider-block
   padding: 0
@@ -209,11 +214,18 @@ article
   z-index: 1
   width: 20px!important
 
+#social-block
+  position: absolute
+  right: 0
+  width: 25px
+  z-index: 1
+
 #social
   position: fixed
-  right: 1%
   top: 44px
   z-index: 23
+  ul
+    margin-left: -12px
   li
     margin: 0 0 20px 0
     &:hover
@@ -236,7 +248,7 @@ article
   height: 158px
   position: fixed
   z-index: 20
-  left: 20px
+  // left: 20px
   top: 120px
   text-indent: -9999px
 
@@ -244,37 +256,36 @@ article
   width: 160px
   color: #fff
   font-size: 12px
-  margin: 0 auto
-  position: absolute
-  bottom: 20px
-  left: 45%
+  line-height: 13px
+  margin: 0 auto 20px auto
+  bottom: 0
+  top: -20px
+  position: relative
   z-index: 25
   p
     margin-top: 10px
   a
     color: #fff
+    &:hover
+      text-decoration: underline
 
+.abs
+  #footer
+    position: absolute
+    top: auto
+    left: 45%
 
 
 #section-0
   background: url(/assets/section-1.jpg) no-repeat
-  background-attachment: fixed
-
 #section-1
   background: url(/assets/section-2.jpg) no-repeat
-  background-attachment: fixed
 #section-2
   background: url(/assets/section-2.jpg) no-repeat
-  background-attachment: fixed
 #section-3
   background: url(/assets/section-3.jpg) no-repeat
-  background-attachment: fixed
-
 #section-4
   background: url(/assets/section-4.jpg) no-repeat
-  background-attachment: fixed
-#section-3
-
 
 
 .section
@@ -325,7 +336,7 @@ article
 
 .images
   width: 450px
-  margin: 0 10% 0 10px
+  margin: 0 13% 0 0
   padding-top: 16px
   ul
     width: 500px
@@ -338,8 +349,7 @@ article
       cursor: pointer
       position: static
     .more
-      left: 0!important
-      width: 500px!important
+
     h3
       font-weight: bold
 
@@ -366,7 +376,7 @@ article
 
 .experts
   width: 480px
-  margin: 0 8% 0 0
+  margin: 0
   ul
     li
       width: 100%
@@ -396,11 +406,12 @@ article
       display: block
 
 .sliders
-  position: relative
+  position: static
   .slide
     position: static
     &.active
       .more
+        margin-left: -220px
         display: block
         position: absolute
         width: 570px
@@ -408,8 +419,8 @@ article
         background-color: #FFF
         padding: 0 0 40px 0
         color: #000
-        top: 0
-        left: -120px
+        top: 22%
+        left: 50%
         min-height: 140px
         z-index: 1
         cursor: default
@@ -478,8 +489,8 @@ article
     font-weight: normal
   .more
     // top: -40px!important
-    margin-top: -180px
-    margin-left: -220px
+    // margin-top: -180px
+    // margin-left: -220px
   .item-info
     width: 470px
     h3
@@ -523,7 +534,7 @@ article
   z-index: 111
   position: fixed
   bottom: 80px
-  left: 74px
+  margin-left: 50px
   display: none
   a
     height: 44px

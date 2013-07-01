@@ -5,11 +5,14 @@ $ ->
   $(".a-show").click ->
     root = $(this).closest(".sliders")
     root.find(".slide").removeClass("active")
-    root.find(".more").css
-      top: $(this).position().top
-      left: $(this).position().left
+    # root.find(".more").css
+    #   top: "50%"
+    #   left: "50%"
     $(this).closest(".slide").addClass "active"
     false
+
+  $(".a-show-project").click ->
+    $("#project_#{$(this).attr("target")}").click()
 
 
 
@@ -130,7 +133,7 @@ $ ->
       $li = $("#menu a[href='#section-#{ui.value}']").parent().addClass("active")
       $li.find("a").trigger('click')
 
-  if hash == "#section-0"
+  if hash == "#section-0" || hash == ""
     $(".ui-slider-handle").addClass("ui0")
 
 
@@ -158,21 +161,43 @@ $ ->
 
 
   $(".scroll").scroll ->
-    if  $("#scroll1").offset().top <= 140 && $("#scroll1").offset().top >= 0 - $("#scroll1").height() + $("#summary1").height()
+
+    # $(".sf").each ->
+    #   fixed = $(this)
+    #   scroll_target = $("##{fixed.attr('target')}")
+
+
+
+    if $("#scroll1").offset().top <= 140 && $("#scroll1").offset().top >= 0 - $("#scroll1").height() + $("#summary1").height() + 140
       $("#summary1").addClass("absolute")
     else
       $("#summary1").removeClass("absolute")
+      if $("#scroll1").offset().top < 0
+        $("#summary1").css
+          "margin-top": $("#scroll1").height() - 140
+      else
+        $("#summary1").css
+          "margin-top": 0
 
-    if  $("#scroll2").offset().top <= 140 && $("#scroll2").offset().top >= 0 - $("#scroll2").height() + $("#summary2").height()
+    if $("#scroll2").offset().top <= 140 && $("#scroll2").offset().top >= 0 - $("#scroll2").height() + $("#summary2").height() + 140
       $("#summary2").addClass("absolute")
     else
       $("#summary2").removeClass("absolute")
+      if $("#scroll2").offset().top < 0
+        $("#summary2").css
+          "margin-top": $("#scroll2").height() - 140
+      else
+        $("#summary2").css
+          "margin-top": 0
 
 
-    if  $("#scroll3").offset().top <= 140 && $("#scroll3").offset().top >= 0 - $("#scroll3").height() + $("#summary3").height()
+    if $("#scroll3").offset().top <= 140 && $("#scroll3").offset().top >= 0 - $("#scroll3").height() + $("#summary3").height()
       $("#summary3").addClass("absolute")
     else
       $("#summary3").removeClass("absolute")
+
+
+
 
 
 
