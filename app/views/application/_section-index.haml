@@ -1,0 +1,10 @@
+- company = StaticBlock.find_by_id 1
+- if company
+  .cf
+    .block.right{:style => "margin: 20% 15px 0 0; width: 50%"}
+      %p
+        %strong.h2=company.title
+        = company.content
+
+.abs
+  = render :partial => "footer"

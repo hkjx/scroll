@@ -32,7 +32,76 @@ body
   padding: 0
   margin: 0
   -webkit-font-smoothing: antialiased
+  height: 100%
+  overflow: hidden
 
+.header-abs
+  position: absolute
+  left: 0
+  right: 0
+
+.curtains
+  // overflow: hidden
+  width: 500%
+  height: 100%
+  // margin: 0 0 40px 0
+
+.section
+  float: left
+  width: 20%
+  min-height: 100%
+  position: relative
+
+
+.container
+  // overflow: hidden
+  height: 100%
+  width: 100%
+  position: absolute
+
+  .main
+    height: 100%
+    overflow: hidden
+
+.scroll
+  overflow: scroll
+  height: 104%
+  width: 102%
+  max-width: 1420px
+  min-width: 800px
+  margin: 0 auto
+
+.absolute
+  position: absolute!important
+  top: 140px
+  margin-top: 0!important
+
+#slider-block
+  padding: 0
+  min-width: 800px
+  max-width: 1400px
+  margin: 0 auto
+#slider
+  z-inedx: 101
+  top: -4px
+  border: none
+  .ui-slider-handle
+    // margin-left: 11.5%
+    border: none
+    width: 5px
+    background-color: #fff
+    -webkit-border-radius: 0
+    border-radius: 0
+    height: 14px
+    cursor: pointer
+#menu
+  ul
+    padding-left: 0
+
+.ui0
+  left: 17%!important
+.ui-slider-handle
+  margin-left: -13%!important
 h1, h2
   // font-family: 'DINProBold'
   font-weight: bold
@@ -76,29 +145,42 @@ article
 
 
 
+.main
+  max-width: 1400px
+  min-width: 800px
+  position: relative
+  margin: 0 auto
 
 
 #menu
   position: fixed
   top: 20px
   z-index: 20
-  border-top: 6px solid #fff
-  width: 98%
-  left: 1%
-  &:before, &:after
-    content: ""
-    display: block
-    position: absolute
-    width: 17px
-    height: 17px
-    -webkit-border-radius: 50%
-    border-radius: 50%
-    background-color: #fff
-    top: -12px
-  &:before
-    left: 0
-  &:after
-    right: 0
+  width: 100%
+  left: 0
+  padding: 0 18px
+  ul
+    max-width: 1400px
+    min-width: 800px
+    margin: 0 auto
+    position: relative
+    // padding-left: 0
+    border-top: 4px solid #fff
+    &:before, &:after
+      content: ""
+      display: block
+      position: absolute
+      width: 17px
+      height: 17px
+      -webkit-border-radius: 50%
+      border-radius: 50%
+      background-color: #fff
+      top: -11px
+    &:before
+      left: -1px
+    &:after
+      right: -1px
+
   li
     margin: 10px 0 0 0
     width: 25%
@@ -107,28 +189,43 @@ article
     position: relative
     list-style: none
     &.active
-      &:before
-        content: ""
-        position: absolute
-        height: 14px
-        width: 5px
-        background-color: #fff
-        top: -20px
-        left: 49%
+      // &:before
+      //   content: ""
+      //   position: absolute
+      //   height: 14px
+      //   width: 5px
+      //   background-color: #fff
+      //   top: -20px
+      //   left: 49%
       a
-        text-decoration: underline
+        text-decoration: none
+        border-bottom: 2px solid
 
   a
     color: #FFF
     font-weight: bold
+
     font-size: 17px
 
 
+#menu-index
+  position: absolute!important
+  left: 4%
+  z-index: 1
+  width: 20px!important
+
+#social-block
+  position: absolute
+  right: 0
+  width: 25px
+  z-index: 1
+
 #social
   position: fixed
-  right: 1%
   top: 44px
   z-index: 23
+  ul
+    margin-left: -12px
   li
     margin: 0 0 20px 0
     &:hover
@@ -151,7 +248,7 @@ article
   height: 158px
   position: fixed
   z-index: 20
-  left: 20px
+  // left: 20px
   top: 120px
   text-indent: -9999px
 
@@ -159,45 +256,45 @@ article
   width: 160px
   color: #fff
   font-size: 12px
-  margin: 0 auto
-  position: absolute
-  bottom: 20px
-  left: 45%
+  line-height: 13px
+  margin: 0 auto 20px auto
+  bottom: 0
+  top: -20px
+  position: relative
   z-index: 25
   p
     margin-top: 10px
   a
     color: #fff
-.section
-  -webkit-background-size: cover!important
-  -moz-background-size: cover
-  -o-background-size: cover
-  background-position: center
+    &:hover
+      text-decoration: underline
+
+.abs
+  #footer
+    position: absolute
+    top: auto
+    left: 45%
 
 
-.container
-  // height: 500px
-  // left: 50%
-  // margin: -250px 0 0 -512px
-  // position: absolute
-  // top: 50%
-  // width: 1024px
-
-#section-1
+#section-0
   background: url(/assets/section-1.jpg) no-repeat
-  background-attachment: fixed
+#section-1
+  background: url(/assets/section-2.jpg) no-repeat
 #section-2
   background: url(/assets/section-2.jpg) no-repeat
-  background-attachment: fixed
 #section-3
   background: url(/assets/section-3.jpg) no-repeat
-  background-attachment: fixed
-
 #section-4
   background: url(/assets/section-4.jpg) no-repeat
-  background-attachment: fixed
 
-#section-3
+
+.section
+  -webkit-background-size: cover!important
+  -moz-background-size: cover!important
+  -o-background-size: cover!important
+  background-size: cover!important
+  background-position: center
+
 
 .parallax
   position: absolute
@@ -239,7 +336,7 @@ article
 
 .images
   width: 450px
-  margin: 0 10% 0 10px
+  margin: 0 13% 0 0
   padding-top: 16px
   ul
     width: 500px
@@ -252,7 +349,7 @@ article
       cursor: pointer
       position: static
     .more
-      left: 0
+
     h3
       font-weight: bold
 
@@ -279,7 +376,7 @@ article
 
 .experts
   width: 480px
-  margin: 0 8% 0 0
+  margin: 0
   ul
     li
       width: 100%
@@ -288,6 +385,8 @@ article
       cursor: pointer
       display: block
       height: 100%
+
+
       // &:hover
       //   strong, span
       //     text-decoration: underline
@@ -307,10 +406,12 @@ article
       display: block
 
 .sliders
+  position: static
   .slide
-    position: relative
+    position: static
     &.active
       .more
+        margin-left: -220px
         display: block
         position: absolute
         width: 570px
@@ -318,8 +419,8 @@ article
         background-color: #FFF
         padding: 0 0 40px 0
         color: #000
-        top: 0
-        left: -120px
+        top: 22%
+        left: 50%
         min-height: 140px
         z-index: 1
         cursor: default
@@ -387,7 +488,9 @@ article
   h1
     font-weight: normal
   .more
-    top: -40px!important
+    // top: -40px!important
+    // margin-top: -180px
+    // margin-left: -220px
   .item-info
     width: 470px
     h3
@@ -396,13 +499,13 @@ article
 
   .line_of_work_1
     width: 40%
-    margin: 15% 35% 0 0
+    margin: 250px 35% 0 0
   .line_of_work_2
     width: 310px
-    margin: 15% 35% 0 0
+    margin: 250px 35% 0 0
   .line_of_work_3
     width: 50%
-    margin: 15% 26% 0 0
+    margin: 250px 26% 0 0
   .line_of_work_4
   .line_of_work_5
   .line_of_work_6
@@ -412,16 +515,14 @@ article
   h1
     font-weight: normal
   .more
-    top: -40px!important
   .item-info
-    width: 470px
+    width: 420px
     h3
       font-weight: bold
       margin-bottom: 14px
 
 .project_general
-  .more
-    left: 20px!important
+
 
 
 
@@ -432,17 +533,20 @@ article
 #scroll-btn
   z-index: 111
   position: fixed
-  -ms-transform: rotate(90deg)
-  -webkit-transform: rotate(90deg)
-  transform: rotate(90deg)
   bottom: 80px
-  left: 0
+  margin-left: 50px
+  display: none
   a
-    font-size: 90px
-    font-family: Arial
-    color: #fff
-    margin-right: 35px
-
+    height: 44px
+    width: 42px
+    display: block
+    text-indent: -9999px
+    margin-bottom: 40px
+    background: url('/assets/arrows.png')
+    &.up
+      background-position: 0 0
+    &.down
+      background-position: -46px 0
 
 
 .html
@@ -479,11 +583,11 @@ article
 
 
 
-
-
-
-
-
+@media (max-width: 860px)
+  .absolute
+    position: static!important
+  // .main
+  //   overflow: scroll!important
 
 
 

@@ -1,14 +1,10 @@
 - contact = StaticBlock.find_by_id 2
 - if contact
   .cf
-    .block.center{:style => "margin: 25% auto 0 auto; width: 420px"}
+    .block.center{:style => "margin: 220px auto 0 auto; width: 420px;"}
       %h1=contact.title
       = raw contact.content
 
 
-- footer = StaticBlock.find_by_id 3
-- if footer
-  #footer
-    = footer.content
-
-
+.abs
+  = render :partial => "footer"
